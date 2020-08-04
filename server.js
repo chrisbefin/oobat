@@ -2,48 +2,32 @@
 //
 // const app = express();
 //
+// app.use(express.static('./dist/oobat'));
 //
-// // serve static files
-// app.use(express.static('./src/'));
-//
-// // direct all requests to index.html
-// app.get('/*', function(req, res) {
-//   res.sendFile('index.html', {root: 'src/'}
-// );
+// app.get('/*', function (req, res) {
+//   res.sendFile('index.html', { root: 'dist/oobat' }
+//   );
 // });
 //
-// //listen for requests
 // app.listen(process.env.PORT || 8080);
-
-// //Install express server
-// const express = require('express');
-// const path = require('path');
 //
-// const app = express();
-//
-// // Serve only the static files from the dist directory
-// app.use(express.static(__dirname + '/dist/<name-of-app>'));
-//
-// app.get('/*', function(req,res) {
-//
-// res.sendFile(path.join(__dirname+'/dist/<name-of-app>/index.html'));
-// });
-//
-// // Start the app by listening on the default Heroku port
-// app.listen(process.env.PORT || 8080);
-
+// console.log(`Running on port ${process.env.PORT || 8080}`)
 
 const express = require('express');
+const socketIO = require('socket.io');
 
-const app = express();
+const PORT = process.env.PORT || 3000;
+const INDEX = '/index.html';
 
-app.use(express.static('./dist/oobat'));
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-app.get('/*', function (req, res) {
-  res.sendFile('index.html', { root: 'dist/oobat' }
-  );
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-app.listen(process.env.PORT || 8080);
-
-console.log(`Running on port ${process.env.PORT || 8080}`)
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);

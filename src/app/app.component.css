@@ -41,12 +41,12 @@ p {
   margin: 0 16px;
 }
 
-.toolbar #twitter-logo {
+.toolbar #github {
   height: 40px;
   margin: 0 16px;
 }
 
-.toolbar #twitter-logo:hover {
+.toolbar #github:hover {
   opacity: 0.8;
 }
 
