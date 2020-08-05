@@ -10,7 +10,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SPMenuComponent } from './sp-menu/sp-menu.component';
 import { MPMenuComponent } from './mp-menu/mp-menu.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
 @NgModule({
   declarations: [
