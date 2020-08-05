@@ -59,12 +59,12 @@ p {
   align-items: center;
 }
 
-svg.material-icons {
+.material-icons {
   height: 24px;
   width: auto;
 }
 
-svg.material-icons:not(:last-child) {
+.material-icons:not(:last-child) {
   margin-right: 8px;
 }
 
@@ -74,9 +74,10 @@ svg.material-icons:not(:last-child) {
 
 .card-container {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 180px;
+  margin-top: 100px;
 }
 
 .card {
