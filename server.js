@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 8080;
 const INDEX = 'index.html';
 
 const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: './dist/oobat' }))
+  .use((req, res) => res.sendFile('index.html', { root: 'dist/oobat' }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const io = socketIO(server);
