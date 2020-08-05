@@ -23,6 +23,7 @@ const PORT = process.env.PORT || 8080;
 const INDEX = 'index.html';
 
 const server = express()
+  .use(express.static('./dist/oobat'))
   .use((req, res) => res.sendFile('index.html', { root: 'dist/oobat' }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
