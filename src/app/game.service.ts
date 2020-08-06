@@ -9,19 +9,17 @@ import { map } from 'rxjs/operators';
 export class GameService {
 
   constructor(private socket: Socket) {
-    this.socket.emit('connect');
-    console.log("connected");
+
   }
 
-  sendMessage(msg: string){
-    console.log("sending message");
-    console.log(msg);
-    this.socket.emit('message', "hello from client");
-  }
-  // getMessage() {
-  //   return this.socket
-  //     .fromEvent("message")
-  //     .pipe(map((data) => data.msg));
-  // }
+  sendMessage(){
+        this.socket.emit("message", "hello from client!");
+    }
+    //  getMessage() {
+    //      return this.socket
+    //          .fromEvent("message")
+    //          .pipe(map((data) => data.msg));
+    // }
+
 
 }

@@ -14,10 +14,5 @@ export class ClassicComponent implements OnInit {
 
   ngOnInit() {
   }
-  sendMsg(msg: string) {
-    this.service.sendMessage(msg);
-  }
-  changeText() {
-    document.getElementById("server-time").innerHTML = "hi";
-  }
+
 }

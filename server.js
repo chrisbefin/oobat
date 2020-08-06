@@ -29,16 +29,11 @@ const server = express()
 
 const io = socketIO(server);
 
-io.on('connection', ws => {
+io.on('connect', ws => {
   console.log('Client connected');
+  socket.send("hello from server!");
 });
 
 io.on('message', msg => {
   console.log(msg);
 });
-
-console.log("HELLO");
-setTimeout(function(){
-    console.log("THIS IS");
-}, 10000);
-console.log("DOG");
