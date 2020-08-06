@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { GameService } from '../game.service';
+import { Card } from '../models/card';
 
 @Component({
   selector: 'app-classic',
@@ -9,20 +10,17 @@ import { GameService } from '../game.service';
   providers: [GameService]
 })
 export class ClassicComponent implements OnInit {
-
   constructor(private service: GameService) { }
 
   ngOnInit() {
   }
-  sendMsg() {
-    this.service.sendMessage();
-    let card = this.service.getCard();
-    if (card != null) {
-      document.getElementById("hint1").innerHTML = card.hint1;
-      document.getElementById("hint2").innerHTML = card.hint2;
-      document.getElementById("hint3").innerHTML = card.hint3;
-      document.getElementById("hint4").innerHTML = card.hint4;
-      document.getElementById("hint5").innerHTML = card.hint5;
-    }
+  getCard() {
+    let cardInfo = this.service.getCard();
+    document.getElementById("hint1").innerHTML = cardInfo[1];
+    document.getElementById("hint2").innerHTML = cardInfo[2];
+    document.getElementById("hint3").innerHTML = cardInfo[3];
+    document.getElementById("hint4").innerHTML = cardInfo[4];
+    document.getElementById("hint5").innerHTML = cardInfo[5];
+
   }
 }

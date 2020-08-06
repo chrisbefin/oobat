@@ -46,6 +46,7 @@ cardObject = {
   hint4 : "fire",
   hint5 : "yellow"
 };
+
 io.on("connection", socket => {
   console.log("Client connected!");
   // let previousId;
@@ -61,7 +62,7 @@ io.on("connection", socket => {
 
   socket.on("getCard", () => {
     console.log("Sending Card");
-    socket.emit("card", cardObject);
+    socket.emit("card", cardObject.key, cardObject.hint1, cardObject.hint2, cardObject.hint3, cardObject.hint4, cardObject.hint5);
   });
   // socket.on("addDoc", doc => {
   //   documents[doc.id] = doc;

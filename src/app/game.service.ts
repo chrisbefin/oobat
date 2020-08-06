@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
-
+import { Card } from './models/card';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ export class GameService {
 
   getCard() {
     this.socket.emit("getCard");
-    this.socket.on("card", card => {
+    this.socket.on("card", (key,hint1,hint2,hint3,hint4,hint5) => {
       console.log("card received");
-      return card;
+      return [key,hint1,hint2,hint3,hint4,hint5];
     });
   }
   sendMessage(){
