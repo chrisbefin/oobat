@@ -8,10 +8,12 @@ import { map } from 'rxjs/operators';
 })
 export class GameService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {
+    this.socket.emit('connect');
+  }
 
   sendMessage(msg: string){
-    this.socket.emit("message", msg);
+    this.socket.emit('message', msg);
   }
   // getMessage() {
   //   return this.socket
