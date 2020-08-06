@@ -14,6 +14,7 @@ import { ClassicComponent } from './classic/classic.component';
 let hostname = window.location.hostname;
 let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
 const config: SocketIoConfig = { url: url, options: {} };
+console.log( config );
 
 @NgModule({
   declarations: [
