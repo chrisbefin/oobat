@@ -15,12 +15,12 @@ export class ClassicComponent implements OnInit {
   ngOnInit() {
   }
   getCard() {
-    let cardInfo = this.service.getCard();
-    document.getElementById("hint1").innerHTML = cardInfo[1];
-    document.getElementById("hint2").innerHTML = cardInfo[2];
-    document.getElementById("hint3").innerHTML = cardInfo[3];
-    document.getElementById("hint4").innerHTML = cardInfo[4];
-    document.getElementById("hint5").innerHTML = cardInfo[5];
+    let key = this.service.getCard();
+    document.getElementById("hint1").innerHTML = key;
+    // document.getElementById("hint2").innerHTML = cardInfo[2];
+    // document.getElementById("hint3").innerHTML = cardInfo[3];
+    // document.getElementById("hint4").innerHTML = cardInfo[4];
+    // document.getElementById("hint5").innerHTML = cardInfo[5];
 
   }
 }
