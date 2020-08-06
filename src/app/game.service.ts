@@ -10,10 +10,13 @@ export class GameService {
 
   constructor(private socket: Socket) {
     this.socket.emit('connect');
+    console.log("connected");
   }
 
   sendMessage(msg: string){
-    this.socket.emit('message', msg);
+    console.log("sending message");
+    console.log(msg);
+    this.socket.emit('message', "hello from client");
   }
   // getMessage() {
   //   return this.socket
