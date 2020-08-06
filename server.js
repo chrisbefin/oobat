@@ -33,6 +33,10 @@ io.on('connection', ws => {
   console.log('Client connected');
 });
 
+io.on('message', msg => {
+  console.log(msg);
+});
+
 console.log("HELLO");
 setTimeout(function(){
     console.log("THIS IS");

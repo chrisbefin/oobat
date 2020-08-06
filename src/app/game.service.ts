@@ -13,10 +13,10 @@ export class GameService {
   sendMessage(msg: string){
     this.socket.emit("message", msg);
   }
-  getMessage() {
-    return this.socket
-      .fromEvent("message")
-      .pipe(map((data) => data.msg));
-  }
+  // getMessage() {
+  //   return this.socket
+  //     .fromEvent("message")
+  //     .pipe(map((data) => data.msg));
+  // }
 
 }
