@@ -29,11 +29,38 @@ const server = express()
 
 const io = socketIO(server);
 
-io.on('connect', ws => {
-  console.log('Client connected');
-  io.send("hello from server!");
-});
+// io.on('connect', ws => {
+//   console.log('Client connected');
+//   io.send("hello from server!");
+// });
+//
+// io.on('message', msg => {
+//   console.log(msg);
+// });
 
-io.on('message', msg => {
-  console.log(msg);
+io.on("connection", socket => {
+  console.log("Client connected!");
+  // let previousId;
+  // const safeJoin = currentId => {
+  //   socket.leave(previousId);
+  //   socket.join(currentId);
+  //   previousId = currentId;
+  // };
+
+  socket.on("msg", msg => {
+    console.log(msg);
+  });
+
+  // socket.on("addDoc", doc => {
+  //   documents[doc.id] = doc;
+  //   safeJoin(doc.id);
+  //   io.emit("documents", Object.keys(documents));
+  //   socket.emit("document", doc);
+  // });
+  //
+  // socket.on("editDoc", doc => {
+  //   documents[doc.id] = doc;
+  //   socket.to(doc.id).emit("document", doc);
+  // });
+
 });

@@ -13,7 +13,8 @@ export class GameService {
   }
 
   sendMessage(){
-        this.socket.emit("message", "hello from client!");
+    console.log("sending message to server");
+        this.socket.emit("msg", "hello from client!");
     }
     //  getMessage() {
     //      return this.socket
