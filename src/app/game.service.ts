@@ -7,11 +7,17 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GameService {
-
   constructor(private socket: Socket) {
 
   }
 
+  getCard() {
+    this.socket.emit("getCard");
+    this.socket.on("card", card => {
+      console.log("card received");
+      return card;
+    });
+  }
   sendMessage(){
     console.log("sending message to server");
         this.socket.emit("msg", "hello from client!");

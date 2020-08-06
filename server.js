@@ -38,6 +38,14 @@ const io = socketIO(server);
 //   console.log(msg);
 // });
 
+cardObject = {
+  key = "sun"
+  hint1 = "shine"
+  hint2 = "sky"
+  hint3 = "hot"
+  hint4 = "fire"
+  hint5 = "yellow"
+}
 io.on("connection", socket => {
   console.log("Client connected!");
   // let previousId;
@@ -51,6 +59,10 @@ io.on("connection", socket => {
     console.log(msg);
   });
 
+  socket.on("getCard", () => {
+    console.log("Sending Card");
+    socket.emit("card", cardObject);
+  });
   // socket.on("addDoc", doc => {
   //   documents[doc.id] = doc;
   //   safeJoin(doc.id);

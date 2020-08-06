@@ -16,5 +16,13 @@ export class ClassicComponent implements OnInit {
   }
   sendMsg() {
     this.service.sendMessage();
+    let card = this.service.getCard();
+    if (card != null) {
+      document.getElementById("hint1").innerHTML = card.hint1;
+      document.getElementById("hint2").innerHTML = card.hint2;
+      document.getElementById("hint3").innerHTML = card.hint3;
+      document.getElementById("hint4").innerHTML = card.hint4;
+      document.getElementById("hint5").innerHTML = card.hint5;
+    }
   }
 }
