@@ -61,8 +61,9 @@ io.on("connection", socket => {
   });
 
   socket.on("getCard", () => {
-    console.log("Sending Card");
-    socket.emit("card", cardObject.key, cardObject.hint1, cardObject.hint2, cardObject.hint3, cardObject.hint4, cardObject.hint5);
+    console.log(cardObject.key);
+    socket.emit("card", cardObject.key);
+    console.log("key sent");
   });
   // socket.on("addDoc", doc => {
   //   documents[doc.id] = doc;
