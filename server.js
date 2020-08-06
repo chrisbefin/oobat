@@ -32,3 +32,9 @@ const io = socketIO(server);
 io.on('connection', ws => {
   console.log('Client connected');
 });
+
+console.log("HELLO");
+setTimeout(function(){
+    console.log("THIS IS");
+}, 10000);
+console.log("DOG");
