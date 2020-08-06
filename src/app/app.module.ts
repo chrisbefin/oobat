@@ -9,8 +9,11 @@ import { HighScoresComponent } from './high-scores/high-scores.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SPMenuComponent } from './sp-menu/sp-menu.component';
 import { MPMenuComponent } from './mp-menu/mp-menu.component';
+import { ClassicComponent } from './classic/classic.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
+let hostname = window.location.hostname;
+let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
+const config: SocketIoConfig = { url: url, options: {} };
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
     HighScoresComponent,
     MainMenuComponent,
     SPMenuComponent,
-    MPMenuComponent
+    MPMenuComponent,
+    ClassicComponent
   ],
   imports: [
     BrowserModule,
