@@ -39,13 +39,13 @@ const io = socketIO(server);
 // });
 
 cardObject = {
-  key = "sun"
-  hint1 = "shine"
-  hint2 = "sky"
-  hint3 = "hot"
-  hint4 = "fire"
-  hint5 = "yellow"
-}
+  key : "sun",
+  hint1 : "shine",
+  hint2 : "sky",
+  hint3 : "hot",
+  hint4 : "fire",
+  hint5 : "yellow"
+};
 io.on("connection", socket => {
   console.log("Client connected!");
   // let previousId;
