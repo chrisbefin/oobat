@@ -31,7 +31,7 @@ const io = socketIO(server);
 
 io.on('connect', ws => {
   console.log('Client connected');
-  socket.send("hello from server!");
+  io.send("hello from server!");
 });
 
 io.on('message', msg => {

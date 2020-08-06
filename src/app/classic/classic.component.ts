@@ -14,5 +14,7 @@ export class ClassicComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  sendMsg() {
+    this.service.sendMessage();
+  }
 }
