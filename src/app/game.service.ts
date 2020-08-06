@@ -13,11 +13,13 @@ export class GameService {
 
   getCard() {
     this.socket.emit("getCard");
+    let answer = "";
     this.socket.on("card", key => {
       console.log("key received");
       console.log(key);
-      return key;
+      answer = key;
     });
+    return answer;
   }
   sendMessage(){
     console.log("sending message to server");
