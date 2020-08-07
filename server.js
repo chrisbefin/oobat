@@ -60,18 +60,56 @@ io.on("connection", socket => {
 
 });
 
-function getHighScores (gamemode) {
-  client.connect();
 
-  client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, (err, res) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-    return res;
+
+function getHighScores (timeout = 10000, gamemode) {
+  return new Promise((resolve, reject) => {
+      let timer;
+
+      client.connect();
+
+      function responseHandler(data) {
+        // resolve promise with the value we got
+        resolve(data);
+        clearTimeout(timer);
+      }
+
+      client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, responseHandler);
+
+      // set timeout so if a response is not received within a
+      // reasonable amount of time, the promise will reject
+      timer = setTimeout(() => {
+        reject(new Error("timeout waiting for database response"));
+      }, timeout);
+
   });
 
+
+
+
+
+
+
+
+//   client.connect();
+//
+//   // client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, (err, res) => {
+//   //   if (err) throw err;
+//   //   for (let row of res.rows) {
+//   //     console.log(JSON.stringify(row));
+//   //   }
+//   //   client.end();
+//   //   return res;
+//   // });
+//
+// client.connect()
+// client
+//   .query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`)
+//   .then(result => console.log(result))
+//   .catch(e => console.error(e.stack))
+//   .then(() => client.end())
+
 }
-let scores = getHighScores("incremental");
-console.log(scores);
+getHighScores("incremental").then(data => {
+  console.log(data).catch(console.log("DB error"))
+})
