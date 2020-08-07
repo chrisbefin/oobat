@@ -20,6 +20,8 @@ export class HighScoresComponent implements OnInit {
     this.service.getScores("incremental").then(data => {
       console.log(typeof data);
       console.log(data);
+      console.log(<string>data);
+      console.log(data.keys());
       document.getElementById("name1").innerHTML = <string>data.rows[0].name;
       document.getElementById("name2").innerHTML = data.rows[1].name;
       document.getElementById("name3").innerHTML = data.rows[2].name;
