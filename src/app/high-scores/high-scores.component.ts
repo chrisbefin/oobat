@@ -18,19 +18,15 @@ export class HighScoresComponent implements OnInit {
 
   getScores() {
     this.service.getScores("incremental").then(data => {
-      console.log(JSON.parse(data));
+      console.log(typeof data);
       console.log(data);
-      let result = JSON.parse(data);
-      console.log(data.rows);
-      console.log(data.rows[0]);
-      console.log(data.rows[0].__proto__.tostring())
-      document.getElementById("name1").innerHTML = result.rows[0].name;
-      document.getElementById("name2").innerHTML = result.rows[1].name;
-      document.getElementById("name3").innerHTML = result.rows[2].name;
+      document.getElementById("name1").innerHTML = <string>data.rows[0].name;
+      document.getElementById("name2").innerHTML = data.rows[1].name;
+      document.getElementById("name3").innerHTML = data.rows[2].name;
 
-      document.getElementById("score1").innerHTML = result.rows[0].score;
-      document.getElementById("score2").innerHTML = result.rows[1].score;
-      document.getElementById("score3").innerHTML = result.rows[2].score;
+      document.getElementById("score1").innerHTML = data.rows[0].score;
+      document.getElementById("score2").innerHTML = data.rows[1].score;
+      document.getElementById("score3").innerHTML = data.rows[2].score;
     });
   }
 }
