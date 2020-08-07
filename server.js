@@ -51,7 +51,7 @@ io.on("connection", socket => {
         client.connect();
         client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, function(err, results) {
             socket.emit('scores', results);
-            client.disconnect();
+            client.end();
         });
     });
   // socket.on("addDoc", doc => {
