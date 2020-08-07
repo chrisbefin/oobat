@@ -36,7 +36,7 @@ export class GameService {
     });
   }
 
-  getScores(gamemode, timeout = 10000): Promise<string[]> {
+  getScores(gamemode, timeout = 10000): Promise<any> {
     return new Promise((resolve, reject) => {
         let timer;
 
