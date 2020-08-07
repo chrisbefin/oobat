@@ -15,8 +15,11 @@ export class ClassicComponent implements OnInit {
   ngOnInit() {
   }
   getCard() {
-    let key = this.service.getCard();
-    document.getElementById("hint1").innerHTML = key;
+    this.service.getCard().then(message => {
+   console.log(message);
+   document.getElementById("hint1").innerHTML = message;
+});
+
     // document.getElementById("hint2").innerHTML = cardInfo[2];
     // document.getElementById("hint3").innerHTML = cardInfo[3];
     // document.getElementById("hint4").innerHTML = cardInfo[4];
