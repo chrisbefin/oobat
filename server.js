@@ -63,7 +63,7 @@ io.on("connection", socket => {
 function getHighScores (gamemode) {
   client.connect();
 
-  client.query(`SELECT name, score FROM scores WHERE gamemode = ${gamemode} ORDER BY score DESC LIMIT(3)`, (err, res) => {
+  client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3)`, (err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
       console.log(JSON.stringify(row));
