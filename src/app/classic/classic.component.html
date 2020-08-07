@@ -1,4 +1,6 @@
-<p id="server-time">placeholder</p>
+
+<input type="text" id="answer" formControlName="answer" />
+<button (click)="checkAnswer()">Check answer</button>
 
 <ul>
   <li id="hint1">hint #1</li>
@@ -7,4 +9,4 @@
   <li id="hint4">hint #4</li>
   <li id="hint5">hint #5</li>
 </ul>
-<button (click)="getCard()">Click me!</button>
+<button (click)="getNextCard()">Get Card</button>

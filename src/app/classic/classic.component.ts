@@ -10,17 +10,32 @@ import { Card } from '../models/card';
   providers: [GameService]
 })
 export class ClassicComponent implements OnInit {
-  currKey : string;
+  currKey : string = "sun";
+  score : number;
+
   constructor(private service: GameService) {
+
   }
 
   ngOnInit() {
+    this.score = 0;
+    this.getNextCard();
   }
-  getCard() {
+  checkAnswer() {
+    let guess = (<HTMLInputElement>document.getElementById("answer")).value;
+    console.log(guess);
+    if (guess == this.currKey) {
+      this.getNextCard();
+      this.score = this.score + 1;
+      console.log(this.score);
+      (<HTMLInputElement>document.getElementById("answer")).value = "";
+    }
+  }
+  getNextCard() {
     this.service.getCard().then(data => {
    console.log(data);
    this.currKey = data[0];
-   document.getElementById("hint1").innerHTML = data[1];
+   document.getElementById("hint1").innerHTML = data[1];//
    document.getElementById("hint2").innerHTML = data[2];
    document.getElementById("hint3").innerHTML = data[3];
    document.getElementById("hint4").innerHTML = data[4];
