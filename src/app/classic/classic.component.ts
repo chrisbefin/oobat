@@ -37,14 +37,14 @@ export class ClassicComponent implements OnInit {
 
   getNextCard() {
     this.service.getCard().then(data => {
-   console.log(data);
-   this.currKey = data[0];
-   document.getElementById("hint1").innerHTML = data[1];//
-   document.getElementById("hint2").innerHTML = data[2];
-   document.getElementById("hint3").innerHTML = data[3];
-   document.getElementById("hint4").innerHTML = data[4];
-   document.getElementById("hint5").innerHTML = data[5];
-});
+      console.log(data);
+      this.currKey = data[0];
+      document.getElementById("hint1").innerHTML = data[1];
+      document.getElementById("hint2").innerHTML = data[2];
+      document.getElementById("hint3").innerHTML = data[3];
+      document.getElementById("hint4").innerHTML = data[4];
+      document.getElementById("hint5").innerHTML = data[5];
+    });
   }
 
   startTimer() {
