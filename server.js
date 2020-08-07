@@ -1,42 +1,23 @@
-// const express = require('express');
-//
-// const app = express();
-// const http = require('http').Server(app);
-// const io = require('socket.io')(http);
-//
-// app.use(express.static('./dist/oobat'));
-//
-// app.get('/*', function (req, res) {
-//   res.sendFile('index.html', { root: 'dist/oobat' }
-//   );
-// });
-//
-// app.listen(process.env.PORT || 8080);
-// http.listen(process.env.PORT || 4444);
-//
-// console.log(`Running on port ${process.env.PORT || 8080}`)
-
 const express = require('express');
 const socketIO = require('socket.io');
+const { Client } = require('pg');
 
 const PORT = process.env.PORT || 8080;
 const INDEX = 'index.html';
 
-const server = express()
+const server = express()//start up express server
   .use(express.static('./dist/oobat'))
   .use((req, res) => res.sendFile('index.html', { root: 'dist/oobat' }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const io = socketIO(server);
 
-// io.on('connect', ws => {
-//   console.log('Client connected');
-//   io.send("hello from server!");
-// });
-//
-// io.on('message', msg => {
-//   console.log(msg);
-// });
+const client = new Client({ //connect to database
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 cardObject = {
   key : "sun",
@@ -78,3 +59,23 @@ io.on("connection", socket => {
   // });
 
 });
+
+function getHighScores (gamemode) {
+  client.connect();
+
+  // client.query(`SELECT name, score FROM scores WHERE gamemode = ${gamemode}; ORDER BY score DESC LIMIT(3)`, (err, res) => {
+  //   if (err) throw err;
+  //   for (let row of res.rows) {
+  //     console.log(JSON.stringify(row));
+  //   }
+  //   client.end();
+  // });
+  client.query(`SELECT * FROM scores`, (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+    client.end();
+  });
+}
+getHighScores("hi");
