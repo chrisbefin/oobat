@@ -50,6 +50,9 @@ io.on("connection", socket => {
   socket.on("getScores", function (gamemode) {
         client.connect();
         client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, function(err, results) {
+            console.log(results);
+            console.log(typeof results);
+            console.log(results.keys());
             socket.emit('scores', results);
             console.log("scores sent");
             client.end();
