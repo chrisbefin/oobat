@@ -10,14 +10,21 @@ import { Card } from '../models/card';
   providers: [GameService]
 })
 export class ClassicComponent implements OnInit {
-  constructor(private service: GameService) { }
+  currKey : string;
+  constructor(private service: GameService) {
+  }
 
   ngOnInit() {
   }
   getCard() {
-    this.service.getCard().then(message => {
-   console.log(message);
-   document.getElementById("hint1").innerHTML = message;
+    this.service.getCard().then(data => {
+   console.log(data);
+   this.currKey = data[0];
+   document.getElementById("hint1").innerHTML = data[1];
+   document.getElementById("hint2").innerHTML = data[2];
+   document.getElementById("hint3").innerHTML = data[3];
+   document.getElementById("hint4").innerHTML = data[4];
+   document.getElementById("hint5").innerHTML = data[5];
 });
 
     // document.getElementById("hint2").innerHTML = cardInfo[2];
