@@ -21,6 +21,7 @@ export class HighScoresComponent implements OnInit {
       console.log(data);
       console.log(data.rows);
       console.log(data.rows[0]);
+      console.log(data.rows[0].name);
       document.getElementById("player1").innerHTML = "fin";
       document.getElementById("player2").innerHTML = data.rows[1].name;
       document.getElementById("player3").innerHTML = data.rows[2].name;
