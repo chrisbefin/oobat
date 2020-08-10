@@ -36,8 +36,9 @@ io.on("connection", socket => {
 
   socket.on("addScore", function (username, score, gamemode) {
     //client.connect();
-    client.query(`INSERT INTO scores(name, score, gamemode) VALUES(${username}, ${score}, ${gamemode});`, function(err, result) {
-      console.log(result);
+    console.log(username, score, gamemode);
+    client.query(`INSERT INTO scores(name, score, gamemode) VALUES('${username}', ${score}, '${gamemode}');`, function(err, result) {
+      console.log(err, result);
       console.log("DB updated");
       //client.end();
     });
