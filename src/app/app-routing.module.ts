@@ -10,6 +10,7 @@ import { IncrementalComponent } from './incremental/incremental.component';
 import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/main-menu', pathMatch: 'full' },
   { path: 'main-menu', component: MainMenuComponent },
   { path: 'high-scores', component: HighScoresComponent },
   { path: 'sp-menu', component: SPMenuComponent },
@@ -17,8 +18,7 @@ const routes: Routes = [
   { path: 'classic', component: ClassicComponent },
   { path: 'incremental', component: IncrementalComponent },
   { path: 'sudden-death', component: SuddenDeathComponent},
-  { path: 'sp-summary/:score/:mode', component: SPSummaryComponent },
-  { path: '', redirectTo: '/main-menu', pathMatch: 'full' }
+  { path: 'sp-summary/:score/:mode', component: SPSummaryComponent }
 ];
 
 @NgModule({

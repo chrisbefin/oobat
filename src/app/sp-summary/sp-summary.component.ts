@@ -10,6 +10,7 @@ import { GameService } from '../game.service';
 export class SPSummaryComponent implements OnInit {
   score : string;
   mode : string;
+  submitted : boolean = false;
   constructor(private _Activatedroute : ActivatedRoute, private router: Router, private service: GameService) { }
 
   ngOnInit(): void {
@@ -19,8 +20,20 @@ export class SPSummaryComponent implements OnInit {
     document.getElementById("mode").innerHTML = this.mode;
   }
 
+
   submitScore() {
-    this.service.sendScore("chris", this.score, this.mode);
-    this.router.navigate(['/main-menu']);
+    if (this.submitted == false) {
+      let name = (<HTMLInputElement>document.getElementById("name")).value;
+      if (name == "") {
+        name = "anon";
+      }
+      this.service.sendScore(name, this.score, this.mode);
+      this.submitted = true;
+      (<HTMLInputElement>document.getElementById("name")).value = "";
+      location.reload();
+    }
+    else {
+      alert("score has already been submitted")
+    }
   }
 }

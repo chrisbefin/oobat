@@ -13,6 +13,7 @@ export class GameService {
   sendScore(username, score, mode) {
     this.socket.emit("addScore", username, score, mode);
   }
+  
   getCard(timeout = 10000): Promise<any> {//queries the DB for a new card using promises
     return new Promise((resolve, reject) => {
         let timer;

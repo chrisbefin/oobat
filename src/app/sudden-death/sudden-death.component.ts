@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sudden-death.component.css']
 })
 export class SuddenDeathComponent implements OnInit {
-
+  score : number;
+  timeLeft : number = 60;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  checkAnswer() {
+
+  }
 }
