@@ -5,6 +5,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SPMenuComponent} from './sp-menu/sp-menu.component';
 import { MPMenuComponent } from './mp-menu/mp-menu.component';
 import { ClassicComponent } from './classic/classic.component';
+import { SPSummaryComponent } from './sp-summary/sp-summary.component';
 
 const routes: Routes = [
   { path: 'high-scores', component: HighScoresComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'sp-menu', component: SPMenuComponent },
   { path: 'mp-menu', component: MPMenuComponent },
   { path: 'classic', component: ClassicComponent },
+  { path: 'sp-summary/:score/:mode', component: SPSummaryComponent },
   { path: '', redirectTo: '/main-menu', pathMatch: 'full' }
 ];
 

@@ -10,12 +10,14 @@ export class GameService {
   constructor(private socket: Socket) {
 
   }
-
-  getCard(timeout = 10000): Promise<string[]> {
+  sendScore(username, score, mode) {
+    this.socket.emit("addScore", username, score, mode);
+  }
+  getCard(timeout = 10000): Promise<any> {//queries the DB for a new card using promises
     return new Promise((resolve, reject) => {
         let timer;
 
-        this.socket.emit("getCard");
+        this.socket.emit("getRandomCard");
 
         function responseHandler(data) {
           // resolve promise with the value we got
@@ -36,7 +38,7 @@ export class GameService {
     });
   }
 
-  getScores(gamemode, timeout = 10000): Promise<any> {
+  getScores(gamemode, timeout = 10000): Promise<any> {//queries the DB for a gamemode's top 3 scores using promises
     return new Promise((resolve, reject) => {
         let timer;
 

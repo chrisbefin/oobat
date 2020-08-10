@@ -11,6 +11,7 @@ import { SPMenuComponent } from './sp-menu/sp-menu.component';
 import { MPMenuComponent } from './mp-menu/mp-menu.component';
 import { ClassicComponent } from './classic/classic.component';
 import { GameService } from './game.service';
+import { SPSummaryComponent } from './sp-summary/sp-summary.component';
 
 let hostname = window.location.hostname;
 let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
@@ -24,7 +25,8 @@ console.log( config );
     MainMenuComponent,
     SPMenuComponent,
     MPMenuComponent,
-    ClassicComponent
+    ClassicComponent,
+    SPSummaryComponent
   ],
   imports: [
     BrowserModule,
