@@ -13,10 +13,11 @@ export class HighScoresComponent implements OnInit {
   constructor(private service: GameService) { }
 
   ngOnInit(): void {
+    this.getScores();
   }
 
   getScores() {
-    this.service.getScores("incremental").then(data => {
+    this.service.getScores("classic").then(data => {
       console.log(typeof data);
       console.log(data);
       console.log(data.rows);
