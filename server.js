@@ -22,6 +22,7 @@ const client = new Client({ //connect to database
 
 io.on("connection", socket => {
   console.log("Client connected!");
+  client.connect();
   // let previousId;
   // const safeJoin = currentId => {
   //   socket.leave(previousId);
@@ -34,7 +35,7 @@ io.on("connection", socket => {
   });
 
   socket.on("addScore", function (username, score, gamemode) {
-    client.connect();
+    //client.connect();
     client.query(`INSERT INTO scores(name, score, gamemode) VALUES(${username}, ${score}, ${gamemode});`, function(err, result) {
       console.log(result);
       console.log("DB updated");
@@ -43,7 +44,7 @@ io.on("connection", socket => {
   });
 
   socket.on("getRandomCard", function () {
-    client.connect();
+    //client.connect();
     client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, results) {
       console.log(results);
       socket.emit("card", results);
@@ -53,7 +54,7 @@ io.on("connection", socket => {
   });
 
   socket.on("getScores", function (gamemode) {
-    client.connect();
+    //client.connect();
     client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, function(err, results) {
       console.log(results);
       socket.emit("scores", results);
