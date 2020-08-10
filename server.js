@@ -38,17 +38,17 @@ io.on("connection", socket => {
     client.query(`INSERT INTO scores(name, score, gamemode) VALUES(${username}, ${score}, ${gamemode});`, function(err, result) {
       console.log(result);
       console.log("DB updated");
-      client.end();
+      //client.end();
     });
   });
 
   socket.on("getRandomCard", function () {
     client.connect();
-    client.query(`SELECT * FROM cards ORDER BY RAND() LIMIT(1);`, function(err, results) {
+    client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, results) {
       console.log(results);
       socket.emit("card", results);
       console.log("random card sent");
-      client.end();
+      //client.end();
     });
   });
 
@@ -58,7 +58,7 @@ io.on("connection", socket => {
       console.log(results);
       socket.emit("scores", results);
       console.log("scores sent");
-      client.end();
+      //client.end();
     });
     });
   // socket.on("addDoc", doc => {
