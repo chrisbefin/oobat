@@ -1,13 +1,18 @@
 
-<input type="text" id="answer" formControlName="answer" />
-<button (click)="checkAnswer()">Check answer</button>
 
-<ul>
-  <li id="hint1">hint #1</li>
-  <li id="hint2">hint #2</li>
-  <li id="hint3">hint #3</li>
-  <li id="hint4">hint #4</li>
-  <li id="hint5">hint #5</li>
-</ul>
-<button (click)="getNextCard()">Get Card</button>
-<p>{{timeLeft}} Seconds Left....</p>
+<p class="timer">{{timeLeft}} Seconds Left....</p>
+
+
+<div class="card">
+  <input class="input" type="text" id="answer" formControlName="answer" />
+  <div class="container">
+    <ul class="list">
+      <li id="hint1">hint #1</li>
+      <li id="hint2">hint #2</li>
+      <li id="hint3">hint #3</li>
+      <li id="hint4">hint #4</li>
+      <li id="hint5">hint #5</li>
+    </ul>
+  </div>
+</div>
+<button (click)="checkAnswer()">Check answer</button>

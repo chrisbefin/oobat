@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../game.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { GameService } from '../game.service';
 export class SPSummaryComponent implements OnInit {
   score : string;
   mode : string;
-  constructor(private _Activatedroute : ActivatedRoute, private service: GameService) { }
+  constructor(private _Activatedroute : ActivatedRoute, private router: Router, private service: GameService) { }
 
   ngOnInit(): void {
     this.score = this._Activatedroute.snapshot.paramMap.get("score");
@@ -21,5 +21,6 @@ export class SPSummaryComponent implements OnInit {
 
   submitScore() {
     this.service.sendScore("chris", this.score, this.mode);
+    this.router.navigate(['/main-menu']);
   }
 }
