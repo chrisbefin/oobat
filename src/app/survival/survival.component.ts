@@ -16,8 +16,9 @@ export class SurvivalComponent implements OnInit {
   hint4 : string;
   hint5 : string;
   score : number;
-  timeLeft: number = 60;
+  timeLeft: number = 15;
     interval;
+    
   constructor(private service: GameService, private router: Router) {//constructor links game service
 
   }
@@ -33,7 +34,8 @@ export class SurvivalComponent implements OnInit {
     console.log(guess);
     if (guess == this.currKey) {
       this.getNextCard();
-      this.score = this.score + 1;
+      this.score = this.score + 1; //increment score
+      this.timeLeft = this.timeLeft + 5; //add 5 seconds for every correct answer
       console.log("score:", this.score);
       (<HTMLInputElement>document.getElementById("answer")).value = "";
     }
@@ -51,7 +53,7 @@ export class SurvivalComponent implements OnInit {
   }
 
   gameOver() { //navigate to end game screen, pass along score and game mode
-    this.router.navigate(['/sp-summary', this.score, "classic"])
+    this.router.navigate(['/sp-summary', this.score, "survival"])
   }
 
   startTimer() {

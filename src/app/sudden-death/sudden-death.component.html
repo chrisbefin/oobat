@@ -1,16 +1,26 @@
-<p class="timer">{{timeLeft}} Seconds Left....</p>
-<p>your score:{{score}}</p>
+<div class="card-container">
+  <div class="card">
+    <h2 style="text-align: center;">sudden death</h2>
+    <div class="container">
+      <p class="timer"><b>Strikes: </b>{{strikes}}</p>
+      <p><b>your score: </b>{{score}}</p>
+    </div>
+  </div>
 
-<div class="card">
-  <input class="input" type="text" id="answer" formControlName="answer" />
-  <div class="container">
-    <ul class="list">
-      <li id="hint1">hint #1</li>
-      <li id="hint2">hint #2</li>
-      <li id="hint3">hint #3</li>
-      <li id="hint4">hint #4</li>
-      <li id="hint5">hint #5</li>
-    </ul>
+  <div class="card">
+    <input class="input" type="text" id="answer" formControlName="answer" />
+    <div class="container">
+      <ul class="list">
+        <li>{{hint1}}</li>
+        <li>{{hint2}}</li>
+        <li>{{hint3}}</li>
+        <li>{{hint4}}</li>
+        <li>{{hint5}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+      <button (click)="checkAnswer()">Check answer</button>
   </div>
 </div>
-<button (click)="checkAnswer()">Check answer</button>

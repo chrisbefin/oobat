@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { GameService } from '../game.service';
-import { Card } from '../models/card';
 
 @Component({
   selector: 'app-classic',
