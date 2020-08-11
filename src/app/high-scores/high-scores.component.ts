@@ -33,7 +33,9 @@ export class HighScoresComponent implements OnInit {
   constructor(private service: GameService) { }
 
   ngOnInit(): void {
-    this.getAllScores();
+    this.getIncrementalScores();
+    this.getClassicScores();
+    this.getSuddenScores();
   }
 
   getIncrementalScores() {
@@ -59,7 +61,7 @@ export class HighScoresComponent implements OnInit {
       this.suddenScore3 = data.rows[2].score;
     });
   }
-  
+
   getClassicScores() {
     this.service.getScores("classic").then(data => {
       this.classicPlayer1 = data.rows[0].name;
