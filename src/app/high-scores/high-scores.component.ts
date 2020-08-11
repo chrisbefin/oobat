@@ -36,17 +36,7 @@ export class HighScoresComponent implements OnInit {
     this.getAllScores();
   }
 
-  getAllScores() {
-    this.service.getScores("classic").then(data => {
-      this.classicPlayer1 = data.rows[0].name;
-      this.classicPlayer2 = data.rows[1].name;
-      this.classicPlayer3 = data.rows[2].name;
-
-      this.classicScore1 = data.rows[0].score;
-      this.classicScore2 = data.rows[1].score;
-      this.classicScore3 = data.rows[2].score;
-    });
-
+  getIncrementalScores() {
     this.service.getScores("incremental").then(data => {
       this.incrementalPlayer1 = data.rows[0].name;
       this.incrementalPlayer2 = data.rows[1].name;
@@ -56,7 +46,9 @@ export class HighScoresComponent implements OnInit {
       this.incrementalScore2 = data.rows[1].score;
       this.incrementalScore3 = data.rows[2].score;
     });
+  }
 
+  getSuddenScores() {
     this.service.getScores("suddendeath").then(data => {
       this.suddenPlayer1 = data.rows[0].name;
       this.suddenPlayer2 = data.rows[1].name;
@@ -65,6 +57,18 @@ export class HighScoresComponent implements OnInit {
       this.suddenScore1 = data.rows[0].score;
       this.suddenScore2 = data.rows[1].score;
       this.suddenScore3 = data.rows[2].score;
+    });
+  }
+  
+  getClassicScores() {
+    this.service.getScores("classic").then(data => {
+      this.classicPlayer1 = data.rows[0].name;
+      this.classicPlayer2 = data.rows[1].name;
+      this.classicPlayer3 = data.rows[2].name;
+
+      this.classicScore1 = data.rows[0].score;
+      this.classicScore2 = data.rows[1].score;
+      this.classicScore3 = data.rows[2].score;
     });
   }
 }
