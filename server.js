@@ -46,8 +46,8 @@ io.on("connection", socket => {
 
   socket.on("getRandomCard", function () {
     //client.connect();
-    client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, results) {
-      console.log(results);
+    client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, result) {
+      console.log(result);
       socket.emit("card", results);
       console.log("random card sent");
       //client.end();
@@ -57,7 +57,6 @@ io.on("connection", socket => {
   socket.on("getScores", function (gamemode) {
     //client.connect();
     client.query(`SELECT name, score FROM scores WHERE gamemode = '${gamemode}' ORDER BY score DESC LIMIT(3);`, function(err, results) {
-      console.log(results);
       socket.emit("scores", results);
       console.log("scores sent");
       //client.end();

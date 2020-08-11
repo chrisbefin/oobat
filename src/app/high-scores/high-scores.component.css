@@ -24,30 +24,15 @@ p {
   flex: 1;
 }
 
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
+.list {
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.toolbar img {
-  margin: 0 16px;
-}
-
-.toolbar #twitter-logo {
-  height: 40px;
-  margin: 0 16px;
-}
-
-.toolbar #twitter-logo:hover {
-  opacity: 0.8;
+li {
+  margin-bottom: 8px;
 }
 
 .content {
@@ -59,6 +44,14 @@ p {
   align-items: center;
 }
 
+.score-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width : 180px;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 25px;
+}
 svg.material-icons {
   height: 24px;
   width: auto;
@@ -72,9 +65,15 @@ svg.material-icons:not(:last-child) {
   fill: #888;
 }
 
+.container {
+  padding: 2px 16px;
+  border-top-style: solid;
+  border-color: red;
+}
+
 .card-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 100px;

@@ -12,6 +12,11 @@ import { Card } from '../models/card';
 })
 export class ClassicComponent implements OnInit {
   currKey : string;
+  hint1 : string;
+  hint2 : string;
+  hint3 : string;
+  hint4 : string;
+  hint5 : string;
   score : number;
   timeLeft: number = 60;
     interval;
@@ -40,11 +45,11 @@ export class ClassicComponent implements OnInit {
     this.service.getCard().then(data => {
       console.log(data);
       this.currKey = data.rows[0].key;
-      document.getElementById("hint1").innerHTML = data.rows[0].hint1;
-      document.getElementById("hint2").innerHTML = data.rows[0].hint2;
-      document.getElementById("hint3").innerHTML = data.rows[0].hint3;
-      document.getElementById("hint4").innerHTML = data.rows[0].hint4;
-      document.getElementById("hint5").innerHTML = data.rows[0].hint5;
+      this.hint1 = data.rows[0].hint1;
+      this.hint2 = data.rows[0].hint2;
+      this.hint3 = data.rows[0].hint3;
+      this.hint4 = data.rows[0].hint4;
+      this.hint5 = data.rows[0].hint5;
     });
   }
 
