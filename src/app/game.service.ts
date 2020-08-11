@@ -57,7 +57,6 @@ export class GameService {
         // reasonable amount of time, the promise will reject
         timer = setTimeout(() => {
           reject(new Error("timeout waiting for server response"));
-          alert("No server connection");
           this.socket.removeListener("scores", responseHandler);
         }, timeout);
 

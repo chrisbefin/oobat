@@ -33,44 +33,38 @@ export class HighScoresComponent implements OnInit {
   constructor(private service: GameService) { }
 
   ngOnInit(): void {
-    this.getIncrementalScores();
-    this.getClassicScores();
-    this.getSuddenScores();
+    this.getAllScores();
   }
 
-  getIncrementalScores() {
-    this.service.getScores("incremental").then(incrementalData => {
-      this.incrementalPlayer1 = incrementalData.rows[0].name;
-      this.incrementalPlayer2 = incrementalData.rows[1].name;
-      this.incrementalPlayer3 = incrementalData.rows[2].name;
+  getAllScores() {
+    this.service.getScores("classic").then(data => {
+      this.classicPlayer1 = data.rows[0].name;
+      this.classicPlayer2 = data.rows[1].name;
+      this.classicPlayer3 = data.rows[2].name;
 
-      this.incrementalScore1 = incrementalData.rows[0].score;
-      this.incrementalScore2 = incrementalData.rows[1].score;
-      this.incrementalScore3 = incrementalData.rows[2].score;
+      this.classicScore1 = data.rows[0].score;
+      this.classicScore2 = data.rows[1].score;
+      this.classicScore3 = data.rows[2].score;
     });
-  }
 
-  getSuddenScores() {
-    this.service.getScores("suddendeath").then(suddenData => {
-      this.suddenPlayer1 = suddenData.rows[0].name;
-      this.suddenPlayer2 = suddenData.rows[1].name;
-      this.suddenPlayer3 = suddenData.rows[2].name;
+    this.service.getScores("incremental").then(data => {
+      this.incrementalPlayer1 = data.rows[0].name;
+      this.incrementalPlayer2 = data.rows[1].name;
+      this.incrementalPlayer3 = data.rows[2].name;
 
-      this.suddenScore1 = suddenData.rows[0].score;
-      this.suddenScore2 = suddenData.rows[1].score;
-      this.suddenScore3 = suddenData.rows[2].score;
+      this.incrementalScore1 = data.rows[0].score;
+      this.incrementalScore2 = data.rows[1].score;
+      this.incrementalScore3 = data.rows[2].score;
     });
-  }
 
-  getClassicScores() {
-    this.service.getScores("classic").then(classicData => {
-      this.classicPlayer1 = classicData.rows[0].name;
-      this.classicPlayer2 = classicData.rows[1].name;
-      this.classicPlayer3 = classicData.rows[2].name;
+    this.service.getScores("suddendeath").then(data => {
+      this.suddenPlayer1 = data.rows[0].name;
+      this.suddenPlayer2 = data.rows[1].name;
+      this.suddenPlayer3 = data.rows[2].name;
 
-      this.classicScore1 = classicData.rows[0].score;
-      this.classicScore2 = classicData.rows[1].score;
-      this.classicScore3 = classicData.rows[2].score;
+      this.suddenScore1 = data.rows[0].score;
+      this.suddenScore2 = data.rows[1].score;
+      this.suddenScore3 = data.rows[2].score;
     });
   }
 }
