@@ -41,7 +41,6 @@ export class IncrementalComponent implements OnInit {
 
   getNextCard() {//called when a new card needs to be loaded in to the component
     this.service.getCard().then(data => {
-      console.log(data);
       this.currKey = data.rows[0].key;
       this.hint1 = data.rows[0].hint1;
       this.hint2 = data.rows[0].hint2;

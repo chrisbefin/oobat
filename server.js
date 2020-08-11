@@ -48,7 +48,7 @@ io.on("connection", socket => {
     //client.connect();
     client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, result) {
       console.log(result);
-      socket.emit("card", results);
+      socket.emit("card", result);
       console.log("random card sent");
       //client.end();
     });

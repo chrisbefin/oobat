@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="card">
-    <h2 style="text-align: center;">classic</h2>
+    <h2 style="text-align: center;">incremental</h2>
     <div class="container">
       <p class="timer"><b>Seconds remaining: </b>{{timeLeft}}</p>
       <p><b>your score: </b>{{score}}</p>
@@ -11,11 +11,11 @@
     <input class="input" type="text" id="answer" formControlName="answer" />
     <div class="container">
       <ul class="list">
-        <li id="hint1">hint #1</li>
-        <li id="hint2">hint #2</li>
-        <li id="hint3">hint #3</li>
-        <li id="hint4">hint #4</li>
-        <li id="hint5">hint #5</li>
+        <li>{{hint1}}</li>
+        <li>{{hint2}}</li>
+        <li>{{hint3}}</li>
+        <li>{{hint4}}</li>
+        <li>{{hint5}}</li>
       </ul>
     </div>
   </div>
