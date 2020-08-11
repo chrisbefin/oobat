@@ -57,7 +57,7 @@ export class HighScoresComponent implements OnInit {
       this.incrementalScore3 = data.rows[2].score;
     });
 
-    this.service.getScores("incremental").then(data => {
+    this.service.getScores("suddendeath").then(data => {
       this.suddenPlayer1 = data.rows[0].name;
       this.suddenPlayer2 = data.rows[1].name;
       this.suddenPlayer3 = data.rows[2].name;

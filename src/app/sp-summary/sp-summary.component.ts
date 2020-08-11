@@ -16,8 +16,6 @@ export class SPSummaryComponent implements OnInit {
   ngOnInit(): void {
     this.score = this._Activatedroute.snapshot.paramMap.get("score");
     this.mode = this._Activatedroute.snapshot.paramMap.get("mode");
-    document.getElementById("score").innerHTML = this.score;
-    document.getElementById("mode").innerHTML = this.mode;
   }
 
 
