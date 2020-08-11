@@ -13,7 +13,7 @@ export class GameService {
   sendScore(username, score, mode) {
     this.socket.emit("addScore", username, score, mode);
   }
-  
+
   getCard(timeout = 10000): Promise<any> {//queries the DB for a new card using promises
     return new Promise((resolve, reject) => {
         let timer;
@@ -51,7 +51,7 @@ export class GameService {
           clearTimeout(timer);
         }
 
-        this.socket.once("scores", responseHandler);
+        this.socket.once(`${gamemode}scores`, responseHandler);
 
         // set timeout so if a response is not received within a
         // reasonable amount of time, the promise will reject
