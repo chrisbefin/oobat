@@ -16,12 +16,12 @@ export class HighScoresComponent implements OnInit {
   classicScore2 : number;
   classicScore3 : number;
 
-  incrementalPlayer1 : string;
-  incrementalPlayer2 : string;
-  incrementalPlayer3 : string;
-  incrementalScore1 : number;
-  incrementalScore2 : number;
-  incrementalScore3 : number;
+  survivalPlayer1 : string;
+  survivalPlayer2 : string;
+  survivalPlayer3 : string;
+  survivalScore1 : number;
+  survivalScore2 : number;
+  survivalScore3 : number;
 
   suddenPlayer1 : string;
   suddenPlayer2 : string;
@@ -47,14 +47,14 @@ export class HighScoresComponent implements OnInit {
       this.classicScore3 = data.rows[2].score;
     });
 
-    this.service.getScores("incremental").then(data => {
-      this.incrementalPlayer1 = data.rows[0].name;
-      this.incrementalPlayer2 = data.rows[1].name;
-      this.incrementalPlayer3 = data.rows[2].name;
+    this.service.getScores("survival").then(data => {
+      this.survivalPlayer1 = data.rows[0].name;
+      this.survivalPlayer2 = data.rows[1].name;
+      this.survivalPlayer3 = data.rows[2].name;
 
-      this.incrementalScore1 = data.rows[0].score;
-      this.incrementalScore2 = data.rows[1].score;
-      this.incrementalScore3 = data.rows[2].score;
+      this.survivalScore1 = data.rows[0].score;
+      this.survivalScore2 = data.rows[1].score;
+      this.survivalScore3 = data.rows[2].score;
     });
 
     this.service.getScores("suddendeath").then(data => {

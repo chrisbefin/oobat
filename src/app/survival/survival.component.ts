@@ -4,11 +4,11 @@ import { Observable, Subscription } from 'rxjs';
 import { GameService } from '../game.service';
 
 @Component({
-  selector: 'app-incremental',
-  templateUrl: './incremental.component.html',
-  styleUrls: ['./incremental.component.css']
+  selector: 'app-survival',
+  templateUrl: './survival.component.html',
+  styleUrls: ['./survival.component.css']
 })
-export class IncrementalComponent implements OnInit {
+export class SurvivalComponent implements OnInit {
   currKey : string;
   hint1 : string;
   hint2 : string;

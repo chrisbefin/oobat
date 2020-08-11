@@ -38,7 +38,53 @@ cards(key, hint1, hint2, hint3, hint4, hint5) values
 
 ('dog', 'bark', 'animal', 'pet', 'bite', 'bag'),
 
-('delinquent', 'juvenile', 'jail', 'young', 'bad', 'rebellious');
+('delinquent', 'juvenile', 'jail', 'young', 'bad', 'rebellious'),
+
+('paper', 'write', 'book', 'print', 'rock', 'scissors'),
+
+('game', 'points', 'score', 'teams', 'win', 'play'),
+
+('table', 'sit', 'wooden', 'dinner', 'legs', 'chairs'),
+
+('computer', 'electronic', 'type', 'screen', 'mouse', 'keyboard'),
+
+('window', 'glass', 'house', 'clear', 'greenhouse', 'open'),
+
+('eye', 'see', 'sense', 'face', 'open', 'close'),
+
+('head', 'face', 'skull', 'brain', 'top', 'hat'),
+
+('sailor', 'ship', 'sea', 'captain', 'boat', 'ocean'),
+
+('coffee', 'brown', 'hot', 'flavored', 'iced', 'brewed'),
+
+('ball', 'air', 'basket', 'bounce', 'circle', 'foot'),
+
+('stamp', 'rubber', 'letter', 'postman', 'postcard', 'post office'),
+
+('cactus', 'plant', 'green', 'needle', 'desert', 'water'),
+
+('test', 'study', 'learn', 'school', 'teacher', 'answer'),
+
+('moon', 'night', 'sky', 'star', 'satellite', 'orbit'),
+
+('leaf', 'green', 'tree', 'food', 'branch', 'bush'),
+
+('bee', 'honey', 'insect', 'hive', 'sting', 'bumble'),
+
+('dance', 'move', 'music', 'party', 'night club', 'bands'),
+
+('napkin', 'wipe', 'mouth', 'clean', 'stack', 'spill'),
+
+('hoax', 'lie', 'false', 'true', 'cheat', 'trick'),
+
+('magma', 'volcano', 'hot', 'earth', 'flow', 'eruption'),
+
+('colleague', 'friend', 'work', 'together', 'group', 'job'),
+
+('evidence', 'crime', 'prove', 'police', 'investigation', 'scene'),
+
+('violin', 'strings', 'orchestra', 'fiddle', 'music', 'instrument');
 
 
 CREATE TABLE IF NOT EXISTS scores (
@@ -51,20 +97,20 @@ CREATE TABLE IF NOT EXISTS scores (
 insert into
 scores(name,gamemode,score) values
 
-('fin','classic',1),
+('Lee','classic',1),
 
-('fin','classic',2),
+('Dave','classic',2),
 
-('fin','classic',3),
+('Fin','classic',3),
 
-('fin', 'incremental', 1),
+('Lee', 'survival', 1),
 
-('fin', 'incremental', 2),
+('Dave', 'survival', 2),
 
-('fin', 'incremental', 3),
+('Fin', 'survival', 3),
 
-('fin', 'suddendeath', 1),
+('Lee', 'suddendeath', 1),
 
-('fin', 'suddendeath', 2),
+('Dave', 'suddendeath', 2),
 
-('fin', 'suddendeath', 3);
+('Fin', 'suddendeath', 3);

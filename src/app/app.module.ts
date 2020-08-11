@@ -12,7 +12,7 @@ import { MPMenuComponent } from './mp-menu/mp-menu.component';
 import { ClassicComponent } from './classic/classic.component';
 import { GameService } from './game.service';
 import { SPSummaryComponent } from './sp-summary/sp-summary.component';
-import { IncrementalComponent } from './incremental/incremental.component';
+import { SurvivalComponent } from './survival/survival.component';
 import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
 
 let hostname = window.location.hostname;
@@ -29,7 +29,7 @@ console.log( config );
     MPMenuComponent,
     ClassicComponent,
     SPSummaryComponent,
-    IncrementalComponent,
+    SurvivalComponent,
     SuddenDeathComponent
   ],
   imports: [
