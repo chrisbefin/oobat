@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { GameService } from '../game.service';
@@ -18,7 +18,7 @@ export class SurvivalComponent implements OnInit {
   score : number;
   timeLeft: number = 15;
     interval;
-    
+
   constructor(private service: GameService, private router: Router) {//constructor links game service
 
   }
@@ -65,4 +65,9 @@ export class SurvivalComponent implements OnInit {
       }
     },1000)
   }
+
+  ngOnDestroy() {
+    this.timeLeft = -1;
+  }
+
 }

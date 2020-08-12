@@ -66,4 +66,7 @@ export class ClassicComponent implements OnInit {
     },1000)
   }
 
+  ngOnDestroy() {
+    this.timeLeft = -1;
+  }
 }

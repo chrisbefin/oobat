@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { GameService } from '../game.service';
@@ -8,7 +8,7 @@ import { GameService } from '../game.service';
   templateUrl: './sudden-death.component.html',
   styleUrls: ['./sudden-death.component.css']
 })
-export class SuddenDeathComponent implements OnInit {
+export class SuddenDeathComponent implements OnInit, OnDestroy {
   currKey : string;
   hint1 : string;
   hint2 : string;
@@ -60,4 +60,7 @@ export class SuddenDeathComponent implements OnInit {
     this.router.navigate(['/sp-summary', this.score, "suddendeath"])
   }
 
+  ngOnDestroy() {
+    console.log("destroyed");
+  }
 }
