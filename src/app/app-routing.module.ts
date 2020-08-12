@@ -8,17 +8,21 @@ import { ClassicComponent } from './classic/classic.component';
 import { SPSummaryComponent } from './sp-summary/sp-summary.component';
 import { SurvivalComponent } from './survival/survival.component';
 import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
+import { JoinGroupComponent } from './join-group/join-group.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main-menu', pathMatch: 'full' },
   { path: 'main-menu', component: MainMenuComponent },
   { path: 'high-scores', component: HighScoresComponent },
   { path: 'sp-menu', component: SPMenuComponent },
   { path: 'mp-menu', component: MPMenuComponent },
+  { path: 'join-group', component: JoinGroupComponent},
+  { path: 'create-group', component: CreateGroupComponent},
   { path: 'classic', component: ClassicComponent },
   { path: 'survival', component: SurvivalComponent },
   { path: 'sudden-death', component: SuddenDeathComponent},
-  { path: 'sp-summary/:score/:mode', component: SPSummaryComponent }
+  { path: 'sp-summary/:score/:mode', component: SPSummaryComponent },
+  { path: '', redirectTo: '/main-menu', pathMatch: 'full' },
 ];
 
 @NgModule({

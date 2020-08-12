@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
-import { Card } from './models/card';
+import { GameSession } from './models/gameSession';
 
 @Injectable({
   providedIn: 'root'
@@ -62,8 +62,35 @@ export class GameService {
 
     });
   }
+  createSession(name, gamemode) {
+    let sessionCode = this.generateCode();
+    let session = {
+      id: sessionCode,
+      mode: gamemode,
+      active: true,
+      numPlayers: 1,
+      playerName1: name,
+      playerName2: '',
+      playerName3: '',
+      playerName4: '',
+      playerScore1: 0,
+      playerScore2: 0,
+      playerScore3: 0,
+      playerScore4: 0,
+    }
+    this.socket.emit("addSession", session);
+    return sessionCode;
+  }
+  private generateCode() {
+    let text = '';//generates random 5 digit code to allow players to join games
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+    for (let i = 0; i < 5; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
 
+    return text;
+  }
 
 
 }

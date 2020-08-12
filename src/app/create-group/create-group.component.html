@@ -1,0 +1,21 @@
+<form [formGroup]="createGameForm" (ngSubmit)="onSubmit(createGameForm.value)">
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <mat-radio-group formControlName="mode" aria-label="Select a gamemode">
+    <mat-radio-button value="versus">Versus (1v1)</mat-radio-button>
+    <mat-radio-button value="party">Party (4 players)</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <button class="button" type="submit">Create Game Session</button>
+
+</form>
+
+<p>{{gameCode}}</p>

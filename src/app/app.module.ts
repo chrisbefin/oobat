@@ -2,9 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HighScoresComponent } from './high-scores/high-scores.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SPMenuComponent } from './sp-menu/sp-menu.component';
@@ -14,6 +17,9 @@ import { GameService } from './game.service';
 import { SPSummaryComponent } from './sp-summary/sp-summary.component';
 import { SurvivalComponent } from './survival/survival.component';
 import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
+import { JoinGroupComponent } from './join-group/join-group.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 let hostname = window.location.hostname;
 let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
@@ -30,12 +36,18 @@ console.log( config );
     ClassicComponent,
     SPSummaryComponent,
     SurvivalComponent,
-    SuddenDeathComponent
+    SuddenDeathComponent,
+    JoinGroupComponent,
+    CreateGroupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatRadioModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]

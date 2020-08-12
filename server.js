@@ -19,6 +19,7 @@ const client = new Client({ //connect to database
   }
 });
 
+const sessions = {}; //in memory storage of multiplayer game sessions
 
 io.on("connection", socket => {
   console.log("Client connected!");
@@ -63,7 +64,15 @@ io.on("connection", socket => {
       console.log("scores sent");
       //client.end();
     });
-    });
+  });
+
+  socket.on("addSession", session => {
+    sessions[session.id] = session; // add new session to the sessions object
+    console.log("session added to server:", session.id);
+    console.log(session);
+    // safeJoin(doc.id);
+    // socket.emit("document", doc);
+  });
   // socket.on("addDoc", doc => {
   //   documents[doc.id] = doc;
   //   safeJoin(doc.id);
