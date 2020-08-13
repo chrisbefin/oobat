@@ -24,5 +24,13 @@ export class JoinGroupComponent implements OnInit {
     // Process checkout data here
     this.gameIDForm.reset();
     console.log(playerData.name, playerData.gameID);
+    this.service.joinSession(playerData.gameID, playerData.name).then(status => {
+      if (status == false) {
+        alert("invalid session ID");
+      }
+      else {
+        console.log("connected to multiplayer session");
+      }
+    });
   }
 }

@@ -6,10 +6,13 @@ import { GameSession } from './models/gameSession';
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
-  constructor(private socket: Socket) {
 
-  }
+export class GameService {
+  currSessionID: string = "";
+  currPlayerNum: number = -1;
+
+  constructor(private socket: Socket) { }
+
   sendScore(username, score, mode) {
     this.socket.emit("addScore", username, score, mode);
   }
@@ -62,6 +65,7 @@ export class GameService {
 
     });
   }
+
   createSession(name, gamemode) {
     let sessionCode = this.generateCode();
     let session = {
@@ -81,6 +85,35 @@ export class GameService {
     this.socket.emit("addSession", session);
     return sessionCode;
   }
+
+  joinSession(sessionID, name, timeout = 10000): Promise<any> {// asks server to join a game session
+    return new Promise((resolve, reject) => {
+        let timer;
+
+        this.socket.emit("joinSession", sessionID, name); // request to join specific session
+
+        function responseHandler(status, playerNum) {
+          // resolve promise with the value we got
+          if (status == true) {
+            this.currPlayerNum = playerNum; // update class data members
+            this.currSessionID = sessionID;
+          }
+          resolve(status);
+          clearTimeout(timer);
+        }
+
+        this.socket.once("joinStatus", responseHandler); //wait for server to signal if join was success or failure
+
+        // set timeout so if a response is not received within a
+        // reasonable amount of time, the promise will reject
+        timer = setTimeout(() => {
+          reject(new Error("timeout waiting for server response"));
+          this.socket.removeListener("joinStatus", responseHandler);
+        }, timeout);
+
+    });
+  }
+
   private generateCode() {
     let text = '';//generates random 5 digit code to allow players to join games
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
