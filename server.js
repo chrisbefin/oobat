@@ -96,6 +96,11 @@ io.on("connection", socket => {
     }
   });
 
+  socket.on("GetSession", sessionID => {
+    session = sessions[sessionID];
+    socket.emit("returnSession", session); // return the requested session
+  });
+
   socket.on("modifySession", session => {
     sessions[session.id] = session; // update the session object
     console.log("session modified:", session.id);

@@ -13,7 +13,7 @@ export class GameService {
   currGameMode: string;
 
   currentSession = this.socket.fromEvent<GameSession>('updateSession');
-  
+
   constructor(private socket: Socket) { }
 
   sendScore(username, score, mode) {
@@ -109,6 +109,30 @@ export class GameService {
         timer = setTimeout(() => {
           reject(new Error("timeout waiting for server response"));
           this.socket.removeListener("joinStatus", responseHandler);
+        }, timeout);
+
+    });
+  }
+
+  getSession(timeout = 10000): Promise<any> {// asks server to join a game session
+    return new Promise((resolve, reject) => {
+        let timer;
+
+        this.socket.emit("getSession", this.currSessionID); // request to join specific session
+
+        function responseHandler(data) {
+          // resolve promise with the value we got
+          resolve(data);
+          clearTimeout(timer);
+        }
+
+        this.socket.once("returnSession", responseHandler); //wait for server to return a session
+
+        // set timeout so if a response is not received within a
+        // reasonable amount of time, the promise will reject
+        timer = setTimeout(() => {
+          reject(new Error("timeout waiting for server response"));
+          this.socket.removeListener("returnSession", responseHandler);
         }, timeout);
 
     });

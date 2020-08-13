@@ -12,10 +12,11 @@ export class LobbyComponent implements OnInit {
   private _SessionSub: Subscription;
 
   constructor(private service: GameService) {
-     this._SessionSub = this.service.currentSession.subscribe(session => this.session = session);
+     this._SessionSub = this.service.currentSession.subscribe(session => {this.session = session});
   }
 
   ngOnInit(): void {
+    this.service.getSession().then(session => {this.session = session});
   }
 
 }
