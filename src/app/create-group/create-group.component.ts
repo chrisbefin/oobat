@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { GameService } from '../game.service';
@@ -11,7 +12,7 @@ import { GameService } from '../game.service';
 export class CreateGroupComponent implements OnInit {
   createGameForm;
   gameCode : string;
-  constructor(private service: GameService, private formBuilder: FormBuilder) {
+  constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
     this.createGameForm = this.formBuilder.group({
       name: '',
       mode: ''
@@ -26,6 +27,7 @@ export class CreateGroupComponent implements OnInit {
     this.gameCode = this.service.createSession(gameData.name, gameData.mode);
     this.createGameForm.reset();
     console.log(gameData.name, gameData.mode, this.gameCode);
+    this.router.navigate(['/lobby']);
   }
 
 }

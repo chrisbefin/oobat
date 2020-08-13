@@ -20,6 +20,7 @@ import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LobbyComponent } from './lobby/lobby.component';
 
 let hostname = window.location.hostname;
 let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
@@ -38,7 +39,8 @@ console.log( config );
     SurvivalComponent,
     SuddenDeathComponent,
     JoinGroupComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    LobbyComponent
   ],
   imports: [
     BrowserModule,

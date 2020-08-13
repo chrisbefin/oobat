@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { GameService } from '../game.service';
+
 @Component({
   selector: 'app-join-group',
   templateUrl: './join-group.component.html',
@@ -10,7 +12,7 @@ import { GameService } from '../game.service';
 export class JoinGroupComponent implements OnInit {
   gameIDForm;
 
-  constructor(private service: GameService, private formBuilder: FormBuilder) {
+  constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
     this.gameIDForm = this.formBuilder.group({
       name: '',
       gameID: ''
@@ -30,6 +32,7 @@ export class JoinGroupComponent implements OnInit {
       }
       else {
         console.log("connected to multiplayer session");
+        this.router.navigate(['/lobby']);
       }
     });
   }

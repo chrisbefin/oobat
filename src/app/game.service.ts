@@ -10,7 +10,10 @@ import { GameSession } from './models/gameSession';
 export class GameService {
   currSessionID: string = "";
   currPlayerNum: number = -1;
+  currGameMode: string;
 
+  currentSession = this.socket.fromEvent<GameSession>('updateSession');
+  
   constructor(private socket: Socket) { }
 
   sendScore(username, score, mode) {
@@ -77,6 +80,9 @@ export class GameService {
       playerScoreList: [0, 0, 0, 0]
     }
     this.socket.emit("addSession", session);
+    this.currGameMode = gamemode; // set class variables
+    this.currSessionID = sessionCode;
+    this.currPlayerNum = 1;
     return sessionCode;
   }
 

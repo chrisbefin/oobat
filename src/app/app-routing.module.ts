@@ -10,6 +10,7 @@ import { SurvivalComponent } from './survival/survival.component';
 import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
+import { LobbyComponent } from './lobby/lobby.component';
 
 const routes: Routes = [
   { path: 'main-menu', component: MainMenuComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'mp-menu', component: MPMenuComponent },
   { path: 'join-group', component: JoinGroupComponent},
   { path: 'create-group', component: CreateGroupComponent},
+  { path: 'lobby', component: LobbyComponent },
   { path: 'classic', component: ClassicComponent },
   { path: 'survival', component: SurvivalComponent },
   { path: 'sudden-death', component: SuddenDeathComponent},
