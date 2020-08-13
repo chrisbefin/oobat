@@ -19,11 +19,11 @@ const client = new Client({ //connect to database
   }
 });
 
+client.connect(); // connect to SQL database
 const sessions = {}; //in memory storage of multiplayer game sessions
 
 io.on("connection", socket => {
   console.log("Client connected!");
-  client.connect(); // connect to SQL database
   let previousId;
   const safeJoin = currentId => { // each client can only be in one session at once
     socket.leave(previousId); // leave previous session before joining new session
@@ -92,14 +92,15 @@ io.on("connection", socket => {
       sessions[sessionID].playerScoreList[clientIndex] = 0;
       console.log(sessions[sessionID]);
       socket.emit("joinStatus", true, (sessions[sessionID].numPlayers+1)); // report success to client, send them their player number
+      socket.to(sessionID).emit("updateSession", sessions[sessionID]); //broadcast the updated session when a new player joins
     }
   });
 
-  socket.on("updateSession", session => {
+  socket.on("modifySession", session => {
     sessions[session.id] = session; // update the session object
-    console.log("session updated:", session.id);
+    console.log("session modified:", session.id);
     console.log(session);
-    socket.to(session.id).emit("session", session); // send out to session to all clients in the room/game
+    socket.to(session.id).emit("updateSession", session); // send out to session to all clients in the room/game
   });
 
 });
