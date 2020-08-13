@@ -16,7 +16,7 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getSession().then(session => {this.session = session});
+    this.service.getSession();
   }
 
 }
