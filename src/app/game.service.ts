@@ -73,14 +73,8 @@ export class GameService {
       mode: gamemode,
       active: true,
       numPlayers: 1,
-      playerName1: name,
-      playerName2: '',
-      playerName3: '',
-      playerName4: '',
-      playerScore1: 0,
-      playerScore2: 0,
-      playerScore3: 0,
-      playerScore4: 0,
+      playerNameList: [name, '', '', ''],
+      playerScoreList: [0, 0, 0, 0]
     }
     this.socket.emit("addSession", session);
     return sessionCode;

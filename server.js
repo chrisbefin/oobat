@@ -86,6 +86,11 @@ io.on("connection", socket => {
     }
     else { // session exists and has room
       safeJoin(session.id); // join the session
+      sessions[sessionID].numPlayers++; //increment number of players in the session
+      let clientIndex = sessions[sessionID].numPlayers - 1; //get index of current player for array access
+      sessions[sessionID].playerNameList[clientIndex] = name;
+      sessions[sessionID].playerScoreList[clientIndex] = 0;
+      console.log(sessions[sessionID]);
       socket.emit("joinStatus", true, (sessions[sessionID].numPlayers+1)); // report success to client, send them their player number
     }
   });
