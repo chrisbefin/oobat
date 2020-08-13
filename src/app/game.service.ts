@@ -90,7 +90,7 @@ export class GameService {
     return new Promise((resolve, reject) => {
         let timer;
 
-        this.socket.emit("joinSession", sessionID, name); // request to join specific session
+        this.socket.emit("joinSession", name, sessionID); // request to join specific session
 
         function responseHandler(status, playerNum) {
           // resolve promise with the value we got
