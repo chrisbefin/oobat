@@ -76,11 +76,11 @@ io.on("connection", socket => {
       console.log("Session doest not exist", sessionID);
       socket.emit("joinStatus", false, -1); //report failure to client
     }
-    else if (sessions[sessionID].mode = "party" && sessions[sessionID].numPlayers == 4) {
+    else if (sessions[sessionID].mode == "party" && sessions[sessionID].numPlayers == 4) {
       console.log("Session already full", sessionID); //no room in session for client
       socket.emit("joinStatus", false, -1); //report failure to client
     }
-    else if (sessions[sessionID].mode = "versus" && sessions[sessionID].numPlayers == 2) {
+    else if (sessions[sessionID].mode == "versus" && sessions[sessionID].numPlayers == 2) {
       console.log("Session already full", sessionID); //no room in session for client
       socket.emit("joinStatus", false, -1); //report failure to client
     }
