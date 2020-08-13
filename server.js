@@ -85,7 +85,7 @@ io.on("connection", socket => {
       socket.emit("joinStatus", false, -1); //report failure to client
     }
     else { // session exists and has room
-      safeJoin(session.id); // join the session
+      safeJoin(sessionID); // join the session
       sessions[sessionID].numPlayers++; //increment number of players in the session
       let clientIndex = sessions[sessionID].numPlayers - 1; //get index of current player for array access
       sessions[sessionID].playerNameList[clientIndex] = name;
