@@ -20,6 +20,9 @@ export class LobbyComponent implements OnInit {
     this.SessionSub = this.service.currentSession.subscribe(session => {
       this.session = session;
       console.log("new session data received");
+      if (session.active == true) {
+        this.startGame(); // begin game once the host makes the session active
+      }
     });
     if (this.service.currPlayerNum == 1) { // player created the session and is host
       this.isHost = true;
@@ -30,6 +33,7 @@ export class LobbyComponent implements OnInit {
   startGame() {
     if (this.isHost == true) {
       this.session.active = true; // game is starting so session goes active
+      this.service.modifySession(this.session); //send updated session to be passed to other clients
     }
     this.router.navigate(['/mp-game']); // go to the game component to actually play
   }
