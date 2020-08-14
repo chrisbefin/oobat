@@ -49,7 +49,8 @@ export class MpGameComponent implements OnInit {
     if (guess == this.currKey) {
       this.getNextCard(); // advnce to next card
       this.score = this.score + 1;
-      this.session.playerScoreList[this.service.currPlayerNum] = this.score; // update session score
+      this.session.playerScoreList[this.service.currPlayerNum-1] = this.score; // update session score
+      //playerNum - 1 is playerIndex
       this.service.modifySession(this.session); // broadcast the change to other clients
       (<HTMLInputElement>document.getElementById("answer")).value = ""; // empty the text field
     }
