@@ -47,10 +47,11 @@ export class MpGameComponent implements OnInit {
     let guess = (<HTMLInputElement>document.getElementById("answer")).value;
     console.log(guess);
     if (guess == this.currKey) {
-      this.getNextCard();
+      this.getNextCard(); // advnce to next card
       this.score = this.score + 1;
-      console.log("score:", this.score);
-      (<HTMLInputElement>document.getElementById("answer")).value = "";
+      this.session.playerScoreList[this.service.currPlayerNum] = this.score; // update session score
+      this.service.modifySession(this.session); // broadcast the change to other clients
+      (<HTMLInputElement>document.getElementById("answer")).value = ""; // empty the text field
     }
   }
 
