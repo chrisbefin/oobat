@@ -1,1 +1,41 @@
-<p>mp-game works!</p>
+<div class="card-container">
+  <div class="card">
+    <h2 style="text-align: center;">classic</h2>
+    <div class="container">
+      <p class="timer"><b>Seconds remaining: </b>{{timeLeft}}</p>
+      <p><b>your score: </b>{{score}}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="mat-body">Scores:</p>
+    <div class="container">
+      <ul class="list">
+        <li>{{session.playerNameList[0]}}: {{session.playerScoreList[0]}}</li>
+        <li>{{session.playerNameList[1]}}: {{session.playerScoreList[1]}}</li>
+        <div *ngIf="session.mode=='party'">
+          <li>{{session.playerNameList[2]}}: {{session.playerScoreList[2]}}</li>
+          <li>{{session.playerNameList[3]}}: {{session.playerScoreList[3]}}</li>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <input class="input" type="text" id="answer" formControlName="answer" />
+    <div class="container">
+      <ul class="list">
+        <li>{{hint1}}</li>
+        <li>{{hint2}}</li>
+        <li>{{hint3}}</li>
+        <li>{{hint4}}</li>
+        <li>{{hint5}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+      <button class="button" (click)="getNextCard()" name="skip">skip card</button>
+      <button (click)="checkAnswer()">Check answer</button>
+  </div>
+</div>
