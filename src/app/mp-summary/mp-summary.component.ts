@@ -30,7 +30,7 @@ export class MpSummaryComponent implements OnInit {
   getTopPlayer() { // finds the winner/ highest scoring player
     let maxIndex = this.session.numPlayers - 1; //max index to check
     let topPlayer = 0; //tracks index of highest scoring player
-    for (let idx = 0; idx <= maxIndex; i++) {
+    for (let idx = 0; idx <= maxIndex; idx++) {
       if (this.session.playerScoreList[idx] > this.session.playerScoreList[topPlayer]) {
         topPlayer = idx; //top player updated
       }
