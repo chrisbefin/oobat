@@ -92,13 +92,13 @@ io.on("connection", socket => {
       sessions[sessionID].playerScoreList[clientIndex] = 0;
       console.log(sessions[sessionID]);
       socket.emit("joinStatus", true, (sessions[sessionID].numPlayers+1)); // report success to client, send them their player number
-      socket.to(sessionID).emit("updateSession", sessions[sessionID]); //broadcast the updated session when a new player joins
+      socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
     }
   });
 
   socket.on("GetSession", sessionID => {
     session = sessions[sessionID]; // find the requested session
-    socket.emit("updateSession", session); // broadcast the requested session to its room
+      socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
   });
 
   socket.on("modifySession", session => {

@@ -12,7 +12,7 @@ export class GameService {
   currPlayerNum: number = -1;
   currGameMode: string;
 
-  currentSession = this.socket.fromEvent<GameSession>('updateSession');
+  currentSession = this.socket.fromEvent<GameSession>("updateSession");
 
   constructor(private socket: Socket) { }
 
