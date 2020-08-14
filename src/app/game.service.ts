@@ -116,13 +116,35 @@ export class GameService {
     });
   }
 
-  getSession() {// ask server to send a game session
-    this.socket.emit("getSession", this.currSessionID); // request to join specific session
+  getSession(timeout = 10000): Promise<any> {// asks server to join a game session
+    return new Promise((resolve, reject) => {
+        let timer;
+
+        console.log("get session:", this.currSessionID);
+        this.socket.emit("getSession", this.currSessionID); // request to join specific session
+
+        function responseHandler(data) {
+          // resolve promise with the value we got
+          resolve(data);
+          clearTimeout(timer);
+        }
+
+        this.socket.once("returnSession", responseHandler); //await return signal
+
+        // set timeout so if a response is not received within a
+        // reasonable amount of time, the promise will reject
+        timer = setTimeout(() => {
+          reject(new Error("timeout waiting for server response"));
+          this.socket.removeListener("joinStatus", responseHandler);
+        }, timeout);
+
+    });
   }
 
   modifySession(session) {
     this.socket.emit("modifySession", session);
   }
+
   private generateCode() {
     let text = '';//generates random 5 digit code to allow players to join games
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

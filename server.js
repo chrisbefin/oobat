@@ -99,7 +99,7 @@ io.on("connection", socket => {
   socket.on("getSession", sessionID => {
     session = sessions[sessionID]; // find the requested session
     console.log("updating session", session);
-    socket.to(sessionID).emit("updateSession", session); // broadcast the session to the room
+    socket.emit("returnSession", session); // broadcast the session to the room
   });
 
   socket.on("modifySession", session => {
