@@ -14,8 +14,8 @@ export class CreateGroupComponent implements OnInit {
   gameCode : string;
   constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
     this.createGameForm = this.formBuilder.group({
-      name: '',
-      mode: ''
+      name: ['',Validators.required],
+      mode: ['',Validators.required]
     });
   }
 

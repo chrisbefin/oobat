@@ -14,8 +14,8 @@ export class JoinGroupComponent implements OnInit {
 
   constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
     this.gameIDForm = this.formBuilder.group({ // template for the form
-      name: '',
-      gameID: ''
+      name: ['',Validators.required],
+      gameID: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
     });
   }
 
