@@ -55,7 +55,8 @@ console.log( config );
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatButtonModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]
