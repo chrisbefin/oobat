@@ -15,17 +15,21 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.SessionSub =  this.service.currentSession.subscribe(session => {
+    this.session.id = this.service.currSessionID;
+    this.session.playerNameList[this.service.currPlayerNum] = this.service.currPlayerName;
+    this.SessionSub = this.service.currentSession.subscribe(session => {
       this.session = session;
       console.log("new session data received");
+      if (this.service.currPlayerNum == 1) { // this client is the session creator
+        this.service.modifySession(this.session); // send updated session to all players
+      }
     });
-    this.updateLobby();
   }
 
-  updateLobby() {
-    this.service.getSession();
-    console.log("request updated session from server");
-  }
+  // updateLobby() {
+  //   this.service.getSession();
+  //   console.log("request updated session from server");
+  // }
   ngOnDestroy() {
     this.SessionSub.unsubscribe(); //kill the subscription when the you move to a new page
   }

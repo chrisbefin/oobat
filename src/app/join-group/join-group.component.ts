@@ -31,6 +31,7 @@ export class JoinGroupComponent implements OnInit {
       }
       else if (status == true) {
         console.log("connected to multiplayer session");
+        this.service.currPlayerName = name; //update name
         this.router.navigate(['/lobby']);
       }
     });

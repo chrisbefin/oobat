@@ -11,7 +11,7 @@ export class GameService {
   currSessionID: string = "";
   currPlayerNum: number = -1;
   currGameMode: string;
-
+  currPlayerName: string;
   currentSession = this.socket.fromEvent<GameSession>("updateSession");
 
   constructor(private socket: Socket) { }
@@ -83,6 +83,7 @@ export class GameService {
     this.currGameMode = gamemode; // set class variables
     this.currSessionID = sessionCode;
     this.currPlayerNum = 1; // session creator is always player 1
+    this.currPlayerName = name;
     return sessionCode;
   }
 
@@ -95,7 +96,7 @@ export class GameService {
         function responseHandler(status, playerNum) {
           // resolve promise with the value we got
           if (status == true) {
-            this.currPlayerNum = playerNum; // update class data members
+            // this.currPlayerNum = playerNum; // update class data members
             // this.currSessionID = sessionID;
           }
           resolve(status);
@@ -104,6 +105,7 @@ export class GameService {
 
         this.socket.once("joinStatus", responseHandler); //wait for server to signal if join was success or failure
         this.currSessionID = sessionID;
+        this.currPlayerName = name;
         // set timeout so if a response is not received within a
         // reasonable amount of time, the promise will reject
         timer = setTimeout(() => {
@@ -118,6 +120,9 @@ export class GameService {
     this.socket.emit("getSession", this.currSessionID); // request to join specific session
   }
 
+  modifySession(session) {
+    this.socket.emit("modifySession", session);
+  }
   private generateCode() {
     let text = '';//generates random 5 digit code to allow players to join games
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
