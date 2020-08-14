@@ -11,6 +11,8 @@ import { SuddenDeathComponent } from './sudden-death/sudden-death.component';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { LobbyComponent } from './lobby/lobby.component';
+import { MpGameComponent } from './mp-game/mp-game.component';
+import { MpSummaryComponent } from './mp-summary/mp-summary.component';
 
 const routes: Routes = [
   { path: 'main-menu', component: MainMenuComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'classic', component: ClassicComponent },
   { path: 'survival', component: SurvivalComponent },
   { path: 'sudden-death', component: SuddenDeathComponent},
+  { path: 'mp-game', component: MpGameComponent },
   { path: 'sp-summary/:score/:mode', component: SPSummaryComponent },
+  { path: 'mp-summary', component: MpSummaryComponent },
   { path: '', redirectTo: '/main-menu', pathMatch: 'full' },
 ];
 

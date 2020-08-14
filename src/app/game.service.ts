@@ -74,7 +74,7 @@ export class GameService {
     let session = {
       id: sessionCode,
       mode: gamemode,
-      active: true,
+      active: false,
       numPlayers: 1,
       playerNameList: [name, '', '', ''],
       playerScoreList: [0, 0, 0, 0]

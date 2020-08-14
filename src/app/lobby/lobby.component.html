@@ -1,7 +1,20 @@
-<p>game will begin when the lobby is full</p>
-<p>{{session.mode}}</p>
-<p><b>ID:</b>{{session.id}}</p>
-<p><b>Player 1:</b>{{session.playerNameList[0]}}</p>
-<p><b>Player 2:</b>{{session.playerNameList[1]}}</p>
-<p><b>Player 3:</b>{{session.playerNameList[2]}}</p>
-<p><b>Player 4:</b>{{session.playerNameList[3]}}</p>
+<h1 class="mat-display-1">Pre-game Lobby</h1>
+<p class="mat-body"><b>Gamemode: </b>{{session.mode}}</p>
+<p class="mat-body"><b>ID: </b>{{session.id}}</p>
+<p class="mat-body"><b>Player 1: </b>{{session.playerNameList[0]}}</p>
+<p class="mat-body"><b>Player 2: </b>{{session.playerNameList[1]}}</p>
+
+
+
+<div *ngIf="session.mode == 'party';">
+  <p class="mat-body"><b>Player 3: </b>{{session.playerNameList[2]}}</p>
+  <p class="mat-body"><b>Player 4: </b>{{session.playerNameList[3]}}</p>
+</div>
+
+<div *ngIf="isHost == true; else elseBlock">
+  <button mat-stroked-button color="primary" (click)="startGame()">Start Game</button>
+</div>
+
+<div #elseBlock>
+  <p class="mat-body">Host will start the game soon!</p>
+</div>
