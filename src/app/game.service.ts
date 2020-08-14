@@ -96,14 +96,14 @@ export class GameService {
           // resolve promise with the value we got
           if (status == true) {
             this.currPlayerNum = playerNum; // update class data members
-            this.currSessionID = sessionID;
+            // this.currSessionID = sessionID;
           }
           resolve(status);
           clearTimeout(timer);
         }
 
         this.socket.once("joinStatus", responseHandler); //wait for server to signal if join was success or failure
-
+        this.currSessionID = sessionID;
         // set timeout so if a response is not received within a
         // reasonable amount of time, the promise will reject
         timer = setTimeout(() => {
