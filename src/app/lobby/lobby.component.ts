@@ -19,7 +19,9 @@ export class LobbyComponent implements OnInit {
       this.session = session;
       console.log("new session data received");
     });
-    this.service.getSession(); // ping the server for an updated session
+    setTimeout(function() {
+      this.service.getSession(); // ping the server for an updated session
+}, 1000);
   }
 
   ngOnDestroy() {
