@@ -90,13 +90,13 @@ io.on("connection", socket => {
       let clientIndex = sessions[sessionID].numPlayers - 1; //get index of current player for array access
       sessions[sessionID].playerNameList[clientIndex] = name; //initialize score and name
       sessions[sessionID].playerScoreList[clientIndex] = 0;
-      console.log(sessions[sessionID]);
+      console.log("successful join",sessions[sessionID]);
       socket.emit("joinStatus", true, (clientIndex+1)); // report success to client, send them their player number
       socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
     }
   });
 
-  socket.on("GetSession", sessionID => {
+  socket.on("getSession", sessionID => {
     session = sessions[sessionID]; // find the requested session
     console.log("updating session", session);
     socket.to(sessionID).emit("updateSession", session); // broadcast the session to the room
