@@ -15,8 +15,11 @@ export class LobbyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.SessionSub = this.service.currentSession.subscribe(session => {this.session = session});
-    this.service.getSession();
+    this.SessionSub = this.service.currentSession.subscribe(session => {
+      this.session = session;
+      console.log("new session data received");
+    });
+    this.service.getSession(); // ping the server for an updated session
   }
 
   ngOnDestroy() {

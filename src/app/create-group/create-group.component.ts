@@ -23,11 +23,10 @@ export class CreateGroupComponent implements OnInit {
   }
 
   onSubmit(gameData) {
-    // Process checkout data here
-    this.gameCode = this.service.createSession(gameData.name, gameData.mode);
+    this.gameCode = this.service.createSession(gameData.name, gameData.mode); // send the session to the server, receive the session ID
     this.createGameForm.reset();
     console.log(gameData.name, gameData.mode, this.gameCode);
-    this.router.navigate(['/lobby']);
+    this.router.navigate(['/lobby']); // go to the lobby to wait for the game to start
   }
 
 }

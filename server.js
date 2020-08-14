@@ -91,21 +91,22 @@ io.on("connection", socket => {
       sessions[sessionID].playerNameList[clientIndex] = name; //initialize score and name
       sessions[sessionID].playerScoreList[clientIndex] = 0;
       console.log(sessions[sessionID]);
-      socket.emit("joinStatus", true, (sessions[sessionID].numPlayers+1)); // report success to client, send them their player number
+      socket.emit("joinStatus", true, (clientIndex+1)); // report success to client, send them their player number
       socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
     }
   });
 
   socket.on("GetSession", sessionID => {
     session = sessions[sessionID]; // find the requested session
-      socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
+    console.log("updating session", session);
+    socket.to(sessionID).emit("updateSession", session); // broadcast the session to the room
   });
 
   socket.on("modifySession", session => {
     sessions[session.id] = session; // update the session object
     console.log("session modified:", session.id);
     console.log(session);
-    socket.to(session.id).emit("updateSession", session); // send out to session to all clients in the room/game
+    socket.to(session.id).emit("updateSession", session); // send out session to all clients in the room/game
   });
 
 });

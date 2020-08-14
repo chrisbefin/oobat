@@ -82,7 +82,7 @@ export class GameService {
     this.socket.emit("addSession", session);
     this.currGameMode = gamemode; // set class variables
     this.currSessionID = sessionCode;
-    this.currPlayerNum = 1;
+    this.currPlayerNum = 1; // session creator is always player 1
     return sessionCode;
   }
 
@@ -114,7 +114,7 @@ export class GameService {
     });
   }
 
-  getSession() {// asks server to join a game session
+  getSession() {// ask server to send a game session
     this.socket.emit("getSession", this.currSessionID); // request to join specific session
   }
 
