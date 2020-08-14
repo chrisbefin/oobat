@@ -25,13 +25,14 @@ export class JoinGroupComponent implements OnInit {
   onSubmit(playerData) {
     this.gameIDForm.reset(); // clear the form
     console.log(playerData.name, playerData.gameID);
-    this.service.joinSession(playerData.gameID, playerData.name).then(status => {
-      if (status == false) {
+    this.service.joinSession(playerData.gameID, playerData.name).then(data => { //data[0] is status string, data[1] is player number
+      if (data[0] == 'false') {
         alert("invalid session ID");
       }
-      else if (status == true) {
+      else if (data[0] == 'true') {
         console.log("connected to multiplayer session");
-        this.service.currPlayerName = name; //update name
+        this.service.currPlayerName = playerData.name; //update name
+        this.service.currPlayerNum = data[1]; // update player number
         this.router.navigate(['/lobby']);
       }
     });

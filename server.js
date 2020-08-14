@@ -74,15 +74,15 @@ io.on("connection", socket => {
   socket.on("joinSession", function (name, sessionID) {
     if (!(sessionID in sessions)) { //check if requested session exists
       console.log("Session doest not exist", sessionID);
-      socket.emit("joinStatus", false, -1); //report failure to client
+      socket.emit("joinStatus", 'false', -1); //report failure to client
     }
     else if (sessions[sessionID].mode == "party" && sessions[sessionID].numPlayers == 4) {
       console.log("Session already full", sessionID); //no room in session for client
-      socket.emit("joinStatus", false, -1); //report failure to client
+      socket.emit("joinStatus", 'false', -1); //report failure to client
     }
     else if (sessions[sessionID].mode == "versus" && sessions[sessionID].numPlayers == 2) {
       console.log("Session already full", sessionID); //no room in session for client
-      socket.emit("joinStatus", false, -1); //report failure to client
+      socket.emit("joinStatus", 'false', -1); //report failure to client
     }
     else { // session exists and has room
       safeJoin(sessionID); // join the session
@@ -91,7 +91,7 @@ io.on("connection", socket => {
       sessions[sessionID].playerNameList[clientIndex] = name; //initialize score and name
       sessions[sessionID].playerScoreList[clientIndex] = 0;
       console.log("successful join",sessions[sessionID]);
-      socket.emit("joinStatus", true, (clientIndex+1)); // report success to client, send them their player number
+      socket.emit("joinStatus", 'true', (clientIndex+1)); // report success to client, send them their player number
       socket.to(sessionID).emit("updateSession", sessions[sessionID]); // broadcast the updated session when a new player joins
     }
   });

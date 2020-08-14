@@ -95,11 +95,11 @@ export class GameService {
 
         function responseHandler(status, playerNum) {
           // resolve promise with the value we got
-          if (status == true) {
+          if (status == 'true') {
             // this.currPlayerNum = playerNum; // update class data members
             // this.currSessionID = sessionID;
           }
-          resolve(status);
+          resolve([status, playerNum]);
           clearTimeout(timer);
         }
 
