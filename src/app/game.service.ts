@@ -115,7 +115,7 @@ export class GameService {
   }
 
   getSession() {// asks server to join a game session
-        this.socket.emit("getSession", this.currSessionID); // request to join specific session
+    this.socket.emit("getSession", this.currSessionID); // request to join specific session
   }
 
   private generateCode() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GameService } from '../game.service';
 import { GameSession } from '../models/gameSession';
@@ -9,14 +9,18 @@ import { GameSession } from '../models/gameSession';
 })
 export class LobbyComponent implements OnInit {
   session: GameSession;
-  private _SessionSub: Subscription;
+  private SessionSub: Subscription;
 
   constructor(private service: GameService) {
-     this._SessionSub = this.service.currentSession.subscribe(session => {this.session = session});
   }
 
   ngOnInit(): void {
+    this.SessionSub = this.service.currentSession.subscribe(session => {this.session = session});
     this.service.getSession();
+  }
+
+  ngOnDestroy() {
+    this.SessionSub.unsubscribe(); //kill the subscription when the you move to a new page
   }
 
 }
