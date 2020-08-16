@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { GameService } from 'src/app/game.service';
-import { GameSession } from 'src/app/models/GameSession';
+import { GameSession } from 'src/app/models/gameSession';
 
 @Component({
   selector: 'app-mp-summary',
