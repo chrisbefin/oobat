@@ -10,17 +10,19 @@ import { GameService } from 'src/app/game.service';
   styleUrls: ['./sp-summary.component.css']
 })
 export class SPSummaryComponent implements OnInit {
-  score : string;
+  score : number;
   mode : string;
   submitted : boolean = false;
   highScoreForm;
   constructor(private _Activatedroute : ActivatedRoute, private router: Router, private service: GameService,  private formBuilder: FormBuilder) {
     this.highScoreForm = this.formBuilder.group({
-      name: ['',Validators.required, Validators.maxLength(8), Validators.minLength(0)]
+      name: ['',[Validators.required, Validators.maxLength(8)]]
     });
   }
 
   ngOnInit(): void {
+    this.score = this.service.currSPScore;
+    this.mode = this.service.currSPGameMode;
   }
 
   onSubmit(scoreData) {

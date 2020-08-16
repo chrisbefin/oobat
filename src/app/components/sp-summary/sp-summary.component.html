@@ -1,8 +1,6 @@
 <p id="mode"><b>Gamemode: </b>{{mode}}</p>
 <p id="score"><b>Your score: </b>{{score}}</p>
 
-<label for="name">Enter your name here: (max 8 characters)</label>
-<input type="text" id="name" formControlName="name" />
 
 <form [formGroup]="highScoreForm" (ngSubmit)="onSubmit(highScoreForm.value)">
 
