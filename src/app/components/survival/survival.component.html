@@ -1,8 +1,8 @@
 <div class="card-container">
   <div class="card">
-    <h2 style="text-align: center;">sudden death</h2>
+    <h2 style="text-align: center;">survival</h2>
     <div class="container">
-      <p class="timer"><b>Strikes: </b>{{strikes}}</p>
+      <p class="timer"><b>Seconds remaining: </b>{{timeLeft}}</p>
       <p><b>your score: </b>{{score}}</p>
     </div>
   </div>
@@ -21,6 +21,7 @@
   </div>
 
   <div class="card">
-      <button (click)="checkAnswer()">Check answer</button>
+      <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
+      <button mat-stroked-button color="primary" type="submit" (click)="checkAnswer()">Check answer</button>
   </div>
 </div>

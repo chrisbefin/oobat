@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { GameService } from '../game.service';
+import { GameService } from 'src/app/game.service';
 
 @Component({
   selector: 'app-high-scores',

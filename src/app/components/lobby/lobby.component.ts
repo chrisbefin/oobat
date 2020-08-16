@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { GameService } from '../game.service';
-import { GameSession } from '../models/gameSession';
+import { GameService } from 'src/app/game.service';
+import { GameSession } from 'src/app/models/GameSession';
 
 @Component({
   selector: 'app-lobby',

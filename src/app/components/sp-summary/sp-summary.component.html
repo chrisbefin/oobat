@@ -1,18 +1,23 @@
-<p id="mode">{{mode}}</p>
-<p id="score">{{score}}</p>
+<p id="mode"><b>Gamemode: </b>{{mode}}</p>
+<p id="score"><b>Your score: </b>{{score}}</p>
 
 <label for="name">Enter your name here: (max 8 characters)</label>
 <input type="text" id="name" formControlName="name" />
+
+<form [formGroup]="highScoreForm" (ngSubmit)="onSubmit(highScoreForm.value)">
+
+  <div>
+    <label for="name">
+      Name (max 8 characters)
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <button mat-stroked-button color="primary" type="submit" [disabled]="!highScoreForm.valid">Submit your score</button>
+
+</form>
+
 <div class="card-container">
-
-  <a class="card" (click)="submitScore()">
-    <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 0-9 9a8.99 8.99 0 0 0 4 7.47V22h2v-3h2v3h2v-3h2v3h2v-3.54c2.47-1.65 4-4.46 4-7.46a9 9 0 0 0-9-9m-4 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m8 0a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m-4 3l1.5 3h-3l1.5-3z" fill="#626262"/></svg>
-
-    <span>Submit Your Score!</span>
-
-    <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-  </a>
-
   <a class="card" routerLink="/main-menu">
     <svg class="material-icons" viewBox="0 0 20 20"><path d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"></path></svg>
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { GameService } from '../game.service';
+import { GameService } from 'src/app/game.service';
 
 @Component({
   selector: 'app-survival',
@@ -53,7 +53,9 @@ export class SurvivalComponent implements OnInit {
   }
 
   gameOver() { //navigate to end game screen, pass along score and game mode
-    this.router.navigate(['/sp-summary', this.score, "survival"])
+    this.service.currSPScore = this.score;
+    this.service.currSPGameMode = "survival";
+    this.router.navigate(['/sp-summary'])
   }
 
   startTimer() {

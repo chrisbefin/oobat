@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { GameService } from '../game.service';
+import { GameService } from 'src/app/game.service';
 
 @Component({
   selector: 'app-create-group',

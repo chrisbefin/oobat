@@ -8,16 +8,19 @@ import { GameSession } from './models/gameSession';
 })
 
 export class GameService {
-  currSessionID: string = "";
+  currSessionID: string = ""; // multiplayer data members
   currPlayerNum: number = -1;
   currGameMode: string;
   currPlayerName: string;
   currentSession = this.socket.fromEvent<GameSession>("updateSession");
 
+  currSPGameMode: string;
+  currSPScore: number;
+
   constructor(private socket: Socket) { }
 
-  sendScore(username, score, mode) {
-    this.socket.emit("addScore", username, score, mode);
+  sendScore(username) {
+    this.socket.emit("addScore", username, this.currSPScore, this.currSPGameMode);
   }
 
   getCard(timeout = 10000): Promise<any> {//queries the DB for a new card using promises

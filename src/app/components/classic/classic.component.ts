@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { GameService } from '../game.service';
+import { GameService } from 'src/app/game.service';
 
 @Component({
-  selector: 'app-sudden-death',
-  templateUrl: './sudden-death.component.html',
-  styleUrls: ['./sudden-death.component.css']
+  selector: 'app-classic',
+  templateUrl: './classic.component.html',
+  styleUrls: ['./classic.component.css'],
+  providers: [GameService]
 })
-export class SuddenDeathComponent implements OnInit, OnDestroy {
+export class ClassicComponent implements OnInit {
   currKey : string;
   hint1 : string;
   hint2 : string;
@@ -16,31 +17,26 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
   hint4 : string;
   hint5 : string;
   score : number;
-  strikes : number;
+  timeLeft: number = 60;
+    interval;
   constructor(private service: GameService, private router: Router) {//constructor links game service
 
   }
 
   ngOnInit() { //initialization function
-    this.score = 0; // player score starts at 0
-    this.strikes = 0; // player starts with zero strikes
-    this.getNextCard(); //loads in first card
+    this.score = 0;// player score starts at 0
+    this.getNextCard();//loads in first card
+    this.startTimer();//starts the game timer
   }
 
   checkAnswer() {//called to confirm if user input is correct answer or not
     let guess = (<HTMLInputElement>document.getElementById("answer")).value;
     console.log(guess);
     if (guess == this.currKey) {
-      this.getNextCard(); //load next card in
+      this.getNextCard();
       this.score = this.score + 1;
-      this.strikes = 0; // resest strikes after a correct guess
+      console.log("score:", this.score);
       (<HTMLInputElement>document.getElementById("answer")).value = "";
-    }
-    else {
-      this.strikes = this.strikes + 1;
-      if (this.strikes == 3) {
-        this.gameOver();
-      }
     }
   }
 
@@ -57,10 +53,22 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
   }
 
   gameOver() { //navigate to end game screen, pass along score and game mode
-    this.router.navigate(['/sp-summary', this.score, "suddendeath"])
+    this.service.currSPScore = this.score;
+    this.service.currSPGameMode = "classic";
+    this.router.navigate(['/sp-summary'])
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else if (this.timeLeft == 0){
+        this.gameOver();
+      }
+    },1000)
   }
 
   ngOnDestroy() {
-    console.log("destroyed");
+    this.timeLeft = -1;
   }
 }
