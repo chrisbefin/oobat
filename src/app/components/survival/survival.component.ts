@@ -55,7 +55,7 @@ export class SurvivalComponent implements OnInit {
   gameOver() { //navigate to end game screen, pass along score and game mode
     this.service.currSPScore = this.score;
     this.service.currSPGameMode = "survival";
-    this.router.navigate(['/sp-summary'])
+    this.router.navigate(['/sp-summary']);
   }
 
   startTimer() {

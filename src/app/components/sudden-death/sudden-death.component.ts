@@ -59,7 +59,7 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
   gameOver() { //navigate to end game screen, pass along score and game mode
     this.service.currSPScore = this.score;
     this.service.currSPGameMode = "suddendeath";
-    this.router.navigate(['/sp-summary'])
+    this.router.navigate(['/sp-summary']);
   }
 
   ngOnDestroy() {

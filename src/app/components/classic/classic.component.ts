@@ -6,8 +6,7 @@ import { GameService } from 'src/app/game.service';
 @Component({
   selector: 'app-classic',
   templateUrl: './classic.component.html',
-  styleUrls: ['./classic.component.css'],
-  providers: [GameService]
+  styleUrls: ['./classic.component.css']
 })
 export class ClassicComponent implements OnInit {
   currKey : string;
@@ -55,7 +54,7 @@ export class ClassicComponent implements OnInit {
   gameOver() { //navigate to end game screen, pass along score and game mode
     this.service.currSPScore = this.score;
     this.service.currSPGameMode = "classic";
-    this.router.navigate(['/sp-summary'])
+    this.router.navigate(['/sp-summary']);
   }
 
   startTimer() {
