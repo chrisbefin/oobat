@@ -20,6 +20,7 @@ export class GameService {
   constructor(private socket: Socket) { }
 
   sendScore(username) {
+    console.log(username, this.currSPScore, this.currSPGameMode);
     this.socket.emit("addScore", username, this.currSPScore, this.currSPGameMode);
   }
 

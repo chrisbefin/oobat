@@ -45,7 +45,6 @@ io.on("connection", socket => {
 
   socket.on("getRandomCard", function () { // pulls random card from cards table and emits it to client
     client.query(`SELECT * FROM cards OFFSET RANDOM() * (SELECT COUNT(*) FROM cards) LIMIT 1 ;`, function(err, result) {
-      console.log(result);
       socket.emit("card", result);
       console.log("random card sent");
     });
