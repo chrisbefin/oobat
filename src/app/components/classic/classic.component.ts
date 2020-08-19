@@ -44,6 +44,7 @@ export class ClassicComponent implements OnInit {
   }
 
   getNextCard() {//called when a new card needs to be loaded in to the component
+    console.log("get next card")
     this.service.getCard().then(data => {
       console.log(data);
       this.currKey = data.rows[0].key; // update class data members

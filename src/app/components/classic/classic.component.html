@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <form [formGroup]="gameForm" (keyup.enter)="onSubmit(gameForm.value)" (ngSubmit)="onSubmit(gameForm.value)">
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit(gameForm.value)">
     <div class="card">
       <input id="answer" type="text" formControlName="answer">
       <div class="container">
@@ -22,8 +22,10 @@
     </div>
 
     <div class="card">
-        <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
         <button mat-stroked-button color="primary" type="submit" [disabled]="!gameForm.valid">Check answer</button>
     </div>
   </form>
+  <div class="card">
+      <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
+  </div>
 </div>

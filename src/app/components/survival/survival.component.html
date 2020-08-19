@@ -22,8 +22,10 @@
     </div>
 
     <div class="card">
-        <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
         <button mat-stroked-button color="primary" type="submit" [disabled]="!gameForm.valid">Check answer</button>
     </div>
   </form>
+  <div class="card">
+      <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
+  </div>
 </div>
