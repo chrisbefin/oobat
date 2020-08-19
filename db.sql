@@ -9,8 +9,8 @@ CREATE TABLE cards (
   hint5 varchar(25) NOT NULL
 );
 
-insert into
-cards(key, hint1, hint2, hint3, hint4, hint5) values
+INSERT INTO
+cards(key, hint1, hint2, hint3, hint4, hint5) VALUES
 
 ('sun', 'shine', 'yellow', 'fire', 'hot', 'sky'),
 
@@ -78,39 +78,20 @@ cards(key, hint1, hint2, hint3, hint4, hint5) values
 
 ('hoax', 'lie', 'false', 'true', 'cheat', 'trick'),
 
-('magma', 'volcano', 'hot', 'earth', 'flow', 'eruption'),
+('lava', 'volcano', 'hot', 'earth', 'flow', 'eruption'),
 
-('colleague', 'friend', 'work', 'together', 'group', 'job'),
+('colleague', 'friend', 'work', 'peer', 'group', 'job'),
 
 ('evidence', 'crime', 'prove', 'police', 'investigation', 'scene'),
 
-('violin', 'strings', 'orchestra', 'fiddle', 'music', 'instrument');
+('violin', 'strings', 'orchestra', 'fiddle', 'music', 'instrument'),
 
+('cloud', 'white', 'fluffy', 'sky', 'rain', 'shapes'),
 
-CREATE TABLE IF NOT EXISTS scores (
-  scoreid SERIAL PRIMARY KEY,
-  name varchar(8) NOT NULL,
-  gamemode varchar(12) NOT NULL,
-  score integer NOT NULL
-);
+('book', 'read', 'write', 'paper', 'cover', 'author'),
 
-insert into
-scores(name,gamemode,score) values
+('sleep', 'bed', 'night', 'rest', 'pillow', 'blankets'),
 
-('Lee','classic',1),
+('road', 'cars', 'sidewalk', 'lanes', 'pavement', 'highway'),
 
-('Dave','classic',2),
-
-('Fin','classic',3),
-
-('Lee', 'survival', 1),
-
-('Dave', 'survival', 2),
-
-('Fin', 'survival', 3),
-
-('Lee', 'suddendeath', 1),
-
-('Dave', 'suddendeath', 2),
-
-('Fin', 'suddendeath', 3);
+('mountain', 'peak', 'high', 'climb', 'hike', 'everest');

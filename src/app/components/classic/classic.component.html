@@ -7,21 +7,23 @@
     </div>
   </div>
 
-  <div class="card">
-    <input class="input" type="text" id="answer" formControlName="answer" />
-    <div class="container">
-      <ul class="list">
-        <li>{{hint1}}</li>
-        <li>{{hint2}}</li>
-        <li>{{hint3}}</li>
-        <li>{{hint4}}</li>
-        <li>{{hint5}}</li>
-      </ul>
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit(gameForm.value)">
+    <div class="card">
+      <input id="answer" type="text" formControlName="answer">
+      <div class="container">
+        <ul class="list">
+          <li>{{hint1}}</li>
+          <li>{{hint2}}</li>
+          <li>{{hint3}}</li>
+          <li>{{hint4}}</li>
+          <li>{{hint5}}</li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-      <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
-      <button mat-stroked-button color="primary" type="submit" (click)="checkAnswer()">Check answer</button>
-  </div>
+    <div class="card">
+        <button class="button" (click)="getNextCard()" name="skip">skip card</button> <br>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!gameForm.valid">Check answer</button>
+    </div>
+  </form>
 </div>

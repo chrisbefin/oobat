@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { GameService } from 'src/app/game.service';
 
 @Component({
@@ -17,8 +19,12 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
   hint5 : string;
   score : number;
   strikes : number;
-  constructor(private service: GameService, private router: Router) {//constructor links game service
+  gameForm;
 
+  constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
+    this.gameForm = this.formBuilder.group({ // template for the form
+      answer: ['',Validators.required]
+    });
   }
 
   ngOnInit() { //initialization function
@@ -27,19 +33,17 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
     this.getNextCard(); //loads in first card
   }
 
-  checkAnswer() {//called to confirm if user input is correct answer or not
-    let guess = (<HTMLInputElement>document.getElementById("answer")).value;
-    console.log(guess);
-    if (guess == this.currKey) {
-      this.getNextCard(); //load next card in
-      this.score = this.score + 1;
-      this.strikes = 0; // resest strikes after a correct guess
-      (<HTMLInputElement>document.getElementById("answer")).value = "";
+  onSubmit(gameData) {
+    let answer = gameData.answer.toLowerCase() // convert player's response to lower case
+    if (answer == this.currKey) { // their answer is correct
+      this.gameForm.reset(); // reset the form
+      this.getNextCard(); // load in a new card
+      this.strikes = 0; // reset the number of strikes
     }
-    else {
-      this.strikes = this.strikes + 1;
-      if (this.strikes == 3) {
-        this.gameOver();
+    else { // their answer is incorrect
+      this.strikes = this.strikes + 1; //increment strikes
+      if (this.strikes == 3) { // it is their 3rd strike
+        this.gameOver()
       }
     }
   }
