@@ -27,6 +27,20 @@ class Database():
             print('Unable to connect to the database server. Terminating.')
             exit(1)
 
+    def getNumCards(self):
+        """ Gets the total number of cards in the cards table
+
+            input: none
+
+            output: number of cards in the DB <int>
+        """
+        try:
+            self.cursor.execute("SELECT COUNT(*) FROM cards")
+            result = self.cursor.fetchone() # fetch the DB response
+            return result
+        except:
+            return -1 # return -1 on failure
+
     def searchCard(self, key):
         """Search for a specific card in the DB by key
            input: the search key
@@ -52,8 +66,10 @@ class Database():
 
     def addCard(self, key, hint1, hint2, hint3, hint4, hint5):
         """Add a card into the database
+
            input: the key word and 5 hints
-           return: none"""
+
+           return: failure or success depending on execution <string>"""
         key = key.lower() # only lowercase strings go in to the database
         hint1 = hint1.lower()
         hint2 = hint2.lower()
@@ -68,6 +84,14 @@ class Database():
             return 'success'
         except:
             return 'failure'
+
+    def getHighScores(self, gamemode):
+        """
+
+        """
+        self.cursor.execute("SELECT name, score FROM scores WHERE gamemode = '{}' ORDER BY score DESC LIMIT(3)".format(gamemode))
+        result = self.cursor.fetchall() # get all 3 rows of results
+        return result
 
     def clearHighScores(self):
         """Resets the scores table to its default"""

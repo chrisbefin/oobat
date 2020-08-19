@@ -29,16 +29,16 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.mainWidget)
 
         # Create an application menu (this will be a sub-menu)
-        self.applicationMenu = QMenu("application")
+        self.dashboardMenu = QMenu("dashboard")
 
         # Add actions to the application menu
-        self.applicationMenu.addActions(self.actions.getApplicationActions())
+        self.dashboardMenu.addActions(self.actions.getDashboardActions())
 
         # Create an options menu
         self.optionsMenu = QMenu("Options")
 
-        # Add the application menu to the options menu
-        self.optionsMenu.addMenu(self.applicationMenu)
+        # Add the dashboard menu to the options menu
+        self.optionsMenu.addMenu(self.dashboardMenu)
 
         # Add actions to the options menu
         self.optionsMenu.addActions(self.actions.getOptionsActions())
@@ -58,8 +58,9 @@ class MainWindow(QMainWindow):
         # Connect the signals
         self.actions.exitAction.triggered.connect(self.quit)
         self.mainWidget.quitApplication.connect(self.quit)
-        self.actions.resetAction.triggered.connect(self.mainWidget.clearForm)
-        self.actions.submitAction.triggered.connect(self.mainWidget.submitInfo)
+        self.actions.clearAction.triggered.connect(self.mainWidget.clearForm)
+        self.actions.resetAction.triggered.connect(self.mainWidget.resetScores)
+        self.actions.aboutAction.triggered.connect(self.mainWidget.aboutInfo)
 
     def quit(self):
         exit(0)
@@ -68,24 +69,28 @@ class Actions(QObject):
     def __init__(self):
         QObject.__init__(self)
 
-        # Create a reset form action
-        self.resetAction = QAction("clear form", self)
-        self.resetAction.setIcon(QIcon("reset.png"))
+        # Create a clear forms action
+        self.clearAction = QAction("clear forms", self)
+        self.clearAction.setIcon(QIcon("clear.png"))
 
         # Create an exit action
         self.exitAction = QAction("Exit", self)
         self.exitAction.setIcon(QIcon("exit.png"))
 
 
-        #create a submit action
-        self.submitAction = QAction("Submit application", self)
-        self.submitAction.setIcon(QIcon("submit.png"))
+        #create a reset action
+        self.resetAction = QAction("Reset High Scores", self)
+        self.resetAction.setIcon(QIcon("reset.png"))
 
+        # create an about action
+        self.aboutAction = QAction("About", self)
+        self.aboutAction.setIcon(QIcon("about.png"))
 
     def addSeparators(self, actionList):
         """Replace None values in the action list with separators.
 
            Input:  action list [<QAction> or None]
+
            Output: action list with separators [<QAction>]
         """
         # Go through each action in the action list
@@ -102,19 +107,20 @@ class Actions(QObject):
 
         return(actionList)
 
-    def getApplicationActions(self):
-        """Return all the actions for the application menu.
+    def getDashboardActions(self):
+        """Return all the actions for the dashboard menu.
 
            Input:  None
            Output: actions [<QAction>]
         """
-        actionList = self.addSeparators([self.submitAction, self.resetAction])
+        actionList = self.addSeparators([self.resetAction, self.clearAction, self.aboutAction])
         return (actionList)
 
     def getOptionsActions(self):
         """Return all the actions for the options menu.
 
            Input:  None
+
            Output: actions [<QAction>]
         """
         # Replace any "None" values with separators
@@ -126,9 +132,10 @@ class Actions(QObject):
         """Return all the tool bar actions.
 
            Input:  None
+
            Output: actions [<QAction>]
         """
         # Replace any "None" values with separators
-        actionList = self.addSeparators([self.submitAction, None, self.resetAction, None, self.exitAction])
+        actionList = self.addSeparators([self.resetAction, None, self.clearAction, None, self.exitAction])
 
         return(actionList)

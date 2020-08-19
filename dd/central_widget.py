@@ -78,12 +78,13 @@ class CentralWidget(QWidget):
 
         self.deleteCardLabel = QLabel("Delete a card")
         self.deleteCardLabel.setFont(QFont('Arial', 12))
-        self.DCkeyLabel = QLabel("key")
+        self.DCkeyLabel = QLabel("key:")
         self.DCkeyField = QLineEdit()
         self.deleteCardButton = QPushButton("Delete card")
 
         self.searchCardLabel = QLabel("Search for a card")
         self.searchCardLabel.setFont(QFont('Arial', 12))
+        self.numCardsLabel = QLabel(self.getCardsString())
         self.SCkeyLabel = QLabel("key:")
         self.SCkeyField = QLineEdit()
         self.searchCardButton = QPushButton("Search Card")
@@ -146,6 +147,7 @@ class CentralWidget(QWidget):
         deleteCardLayout.addWidget(self.deleteCardButton, alignment=Qt.AlignBottom)
 
         searchCardLayout.addWidget(self.searchCardLabel, alignment=Qt.AlignTop)
+        searchCardLayout.addWidget(self.numCardsLabel, alignment=Qt.AlignCenter)
         searchCardLayout.addWidget(self.SCkeyLabel,alignment=Qt.AlignCenter)
         searchCardLayout.addWidget(self.SCkeyField,alignment=Qt.AlignCenter)
         searchCardLayout.addWidget(self.searchCardButton,alignment=Qt.AlignBottom)
@@ -185,18 +187,45 @@ class CentralWidget(QWidget):
         self.addCardButton.clicked.connect(self.addCard)
         self.searchCardButton.clicked.connect(self.searchCard)
         self.deleteCardButton.clicked.connect(self.deleteCard)
-
+        self.resestScoresButton.clicked.connect(self.resetScores)
         self.getScores() # populate the high score list
 
-    def getScores():
+    def getScores(self):
         """ Gets the scores from the DB and displays them on the dashboard
 
             input: none
 
             output: none
         """
-        
-        return
+        classicResults = self.db.getHighScores("classic") # returns an array of 3 tuples
+
+        self.classic1Label.setText("{}: {}".format(classicResults[0][0], classicResults[0][1]))
+        self.classic2Label.setText("{}: {}".format(classicResults[1][0], classicResults[1][1]))
+        self.classic3Label.setText("{}: {}".format(classicResults[2][0], classicResults[2][1]))
+
+        survivalResults = self.db.getHighScores("survival")
+
+        self.survival1Label.setText("{}: {}".format(survivalResults[0][0], survivalResults[0][1]))
+        self.survival2Label.setText("{}: {}".format(survivalResults[1][0], survivalResults[1][1]))
+        self.survival3Label.setText("{}: {}".format(survivalResults[2][0], survivalResults[2][1]))
+
+        suddenDeathResults = self.db.getHighScores("suddendeath")
+
+        self.suddenDeath1Label.setText("{}: {}".format(suddenDeathResults[0][0], suddenDeathResults[0][1]))
+        self.suddenDeath2Label.setText("{}: {}".format(suddenDeathResults[1][0], suddenDeathResults[1][1]))
+        self.suddenDeath3Label.setText("{}: {}".format(suddenDeathResults[2][0], suddenDeathResults[2][1]))
+
+    def resetScores(self):
+        """ instructs database to reset the scores table to its default
+
+            input: none
+
+            output: none
+        """
+        self.db.clearHighScores() # reset the scores to default
+        self.getScores() # update the dashboard to reflect the changes in the DB
+        display = messageBox("High scores reset to default") # alert the user
+        display.exec()
 
     def deleteCard(self):
         """Sends a key to the DB for that card to be deleted
@@ -282,7 +311,7 @@ class CentralWidget(QWidget):
         """
         self.SCkeyField.clear() # clear search card
 
-        self.ACKeyField.clear() # clear add card
+        self.ACkeyField.clear() # clear add card
         self.hint1Field.clear()
         self.hint2Field.clear()
         self.hint3Field.clear()
@@ -321,36 +350,19 @@ class CentralWidget(QWidget):
         display.exec() # display a pop up with your application info
         self.clearForm() # empty the form
 
-
-    def checkFirstName(self, text):
-        """ Read applicant first name in from the form
-
-            Input: text from text box
-
-            Output: None
-        """
-        self.firstName = text
-
-    def checkLastName(self, text):
-        """ Read applicant last name in from the form
-
-            Input: text from text box
-
-            Output: None
-        """
-        self.lastName = text
-
-    def checkEmail(self, text):
-        """ Check if applicant email is a valid email address
-
-            Input: text from email field
-
-            Output: None
-        """
-        if (text.find('.com') == -1 or text.find('@') == -1):
-            self.emailField.setStyleSheet("color: red;")
+    def getCardsString(self):
+        result = self.db.getNumCards()
+        if (result[0] == -1):
+            return "Database error"
         else:
-            self.emailField.setStyleSheet("color: black;")
+            return "total cards: {}".format(result[0])
 
-    def checkBio(self, text):
-        self.bio = text
+    def aboutInfo(self):
+        """Gives pop up message with info regarding the dashboard and oobat
+
+            input: none
+
+            output: none
+        """
+        display = messageBox("This dashboard is a companion to the web game 'Oobat'\nChristian Fin\nLASP\nSummer 2020\noobat.herokuapp.com")
+        display.exec()
