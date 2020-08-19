@@ -1,20 +1,20 @@
 <form [formGroup]="gameIDForm" (ngSubmit)="onSubmit(gameIDForm.value)">
+<div class="card">
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
 
-  <div>
-    <label for="name">
-      Name
-    </label>
-    <input id="name" type="text" formControlName="name">
-  </div>
+    <div>
+      <label for="gameID">
+        game ID
+      </label>
+      <input style="margin : 5px;" id="gameID" type="text" formControlName="gameID">
+    </div>
 
-  <div>
-    <label for="gameID">
-      game ID
-    </label>
-    <input id="gameID" type="text" formControlName="gameID">
-  </div>
-
-  <button mat-stroked-button color="primary" type="submit" [disabled]="!gameIDForm.valid">Join Game Session</button>
-
+  <button style="margin : 5px;" mat-stroked-button color="primary" type="submit" [disabled]="!gameIDForm.valid">Join Game Session</button>
+</div>
 
 </form>

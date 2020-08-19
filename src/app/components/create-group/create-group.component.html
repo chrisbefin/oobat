@@ -1,21 +1,21 @@
 <form [formGroup]="createGameForm" (ngSubmit)="onSubmit(createGameForm.value)">
+<div class="card">
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input style="margin : 5px;" id="name" type="text" formControlName="name">
+    </div>
 
-  <div>
-    <label for="name">
-      Name
-    </label>
-    <input id="name" type="text" formControlName="name">
+    <div>
+      <mat-radio-group style="margin : 5px;" formControlName="mode" aria-label="Select a gamemode">
+      <mat-radio-button value="versus">Versus (1v1)</mat-radio-button>
+      <mat-radio-button value="party">Party (4 players)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <button style="margin : 5px;" mat-stroked-button color="primary" type="submit" [disabled]="!createGameForm.valid">Create Game Session</button>
   </div>
-
-  <div>
-    <mat-radio-group formControlName="mode" aria-label="Select a gamemode">
-    <mat-radio-button value="versus">Versus (1v1)</mat-radio-button>
-    <mat-radio-button value="party">Party (4 players)</mat-radio-button>
-    </mat-radio-group>
-  </div>
-
-  <button mat-stroked-button color="primary" type="submit" [disabled]="!createGameForm.valid">Create Game Session</button>
-
 </form>
 
 <p>{{gameCode}}</p>
