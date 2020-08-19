@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <form [formGroup]="gameForm" (ngSubmit)="onSubmit(gameForm.value)">
+  <form [formGroup]="gameForm" (keyup.enter)="onSubmit(gameForm.value)" (ngSubmit)="onSubmit(gameForm.value)">
     <div class="card">
       <input id="answer" type="text" formControlName="answer">
       <div class="container">
