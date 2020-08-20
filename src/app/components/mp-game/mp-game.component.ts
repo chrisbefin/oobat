@@ -53,6 +53,7 @@ export class MpGameComponent implements OnInit {
     if (answer == this.currKey) { // their answer is correct
       this.gameForm.reset(); // reset the form
       this.getNextCard(); // load in a new card
+      this.score = this.score + 1; // increment score
       this.session.playerScoreList[this.service.currPlayerNum-1] = this.score; // update session score
       //playerNum - 1 is playerIndex
       this.service.modifySession(this.session); // broadcast the change to other clients
