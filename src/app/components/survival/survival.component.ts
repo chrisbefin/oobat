@@ -40,6 +40,7 @@ export class SurvivalComponent implements OnInit {
       this.gameForm.reset(); // reset the form
       this.getNextCard(); // load in a new card
       this.score = this.score + 1; // increment
+      this.timeLeft = this.timeLeft + 5; // add five seconds to the clock
     }
   }
 

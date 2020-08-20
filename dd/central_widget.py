@@ -84,7 +84,7 @@ class CentralWidget(QWidget):
 
         self.searchCardLabel = QLabel("Search for a card")
         self.searchCardLabel.setFont(QFont('Arial', 12))
-        self.numCardsLabel = QLabel(self.getCardsString())
+        self.numCardsLabel = QLabel()
         self.SCkeyLabel = QLabel("key:")
         self.SCkeyField = QLineEdit()
         self.searchCardButton = QPushButton("Search Card")
@@ -188,7 +188,14 @@ class CentralWidget(QWidget):
         self.searchCardButton.clicked.connect(self.searchCard)
         self.deleteCardButton.clicked.connect(self.deleteCard)
         self.resestScoresButton.clicked.connect(self.resetScores)
+
+
         self.getScores() # populate the high score list
+        self.updateCardCount() # get the number of cards
+
+    def updateCardCount(self):
+        """Makes sure the card count is current"""
+        self.numCardsLabel.setText(self.getCardsString())
 
     def getScores(self):
         """ Gets the scores from the DB and displays them on the dashboard
@@ -199,6 +206,7 @@ class CentralWidget(QWidget):
         """
         classicResults = self.db.getHighScores("classic") # returns an array of 3 tuples
 
+        # insert data into dashboard
         self.classic1Label.setText("{}: {}".format(classicResults[0][0], classicResults[0][1]))
         self.classic2Label.setText("{}: {}".format(classicResults[1][0], classicResults[1][1]))
         self.classic3Label.setText("{}: {}".format(classicResults[2][0], classicResults[2][1]))
@@ -238,12 +246,14 @@ class CentralWidget(QWidget):
         if returnStatus == 'success':
             display = messageBox("card deleted from the database")
             display.exec() # display a pop up
+            self.updateCardCount() # get the new number of cards in the DB
         else:
             display = messageBox("the card could not be deleted")
             display.exec() # display a pop up with your application info
         self.clearDeleteCardForm()
 
     def clearDeleteCardForm(self):
+        """Clears the delete card key field"""
         self.DCkeyField.clear()
 
     def addCard(self):
@@ -262,7 +272,11 @@ class CentralWidget(QWidget):
         if returnStatus == 'failure':
             display = messageBox("could not add the card to the database")
             display.exec() # display a pop up with your application info
+        else:
+            display = messageBox("Card added")
+            display.exec()
         self.clearAddCardForm()
+        self.updateCardCount() # get new number of cards in DB
 
     def clearAddCardForm(self):
         """ Empties the add card form fields
