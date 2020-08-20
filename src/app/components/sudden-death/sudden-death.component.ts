@@ -39,6 +39,7 @@ export class SuddenDeathComponent implements OnInit, OnDestroy {
       this.gameForm.reset(); // reset the form
       this.getNextCard(); // load in a new card
       this.strikes = 0; // reset the number of strikes
+      this.score = this.score + 1; // increment score
     }
     else { // their answer is incorrect
       this.strikes = this.strikes + 1; //increment strikes
