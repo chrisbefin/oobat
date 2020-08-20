@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { GameService } from 'src/app/game.service';
 import { GameSession } from 'src/app/models/gameSession';
 
@@ -22,8 +24,11 @@ export class MpGameComponent implements OnInit {
   score : number;
   timeLeft: number = 60;
     interval;
-  constructor(private service: GameService, private router: Router) {//constructor links game service
-
+    gameForm;
+  constructor(private service: GameService, private router: Router, private formBuilder: FormBuilder) {
+    this.gameForm = this.formBuilder.group({ // template for the form
+      answer: ['',Validators.required]
+    });
   }
 
   ngOnInit() { //initialization function
@@ -43,16 +48,14 @@ export class MpGameComponent implements OnInit {
     });
   }
 
-  checkAnswer() {//called to confirm if user input is correct answer or not
-    let guess = (<HTMLInputElement>document.getElementById("answer")).value;
-    console.log(guess);
-    if (guess == this.currKey) {
-      this.getNextCard(); // advnce to next card
-      this.score = this.score + 1;
+  onSubmit(gameData) { // called when user checks their answer
+    let answer = gameData.answer.toLowerCase() // convert player's response to lower case
+    if (answer == this.currKey) { // their answer is correct
+      this.gameForm.reset(); // reset the form
+      this.getNextCard(); // load in a new card
       this.session.playerScoreList[this.service.currPlayerNum-1] = this.score; // update session score
       //playerNum - 1 is playerIndex
       this.service.modifySession(this.session); // broadcast the change to other clients
-      (<HTMLInputElement>document.getElementById("answer")).value = ""; // empty the text field
     }
   }
 
